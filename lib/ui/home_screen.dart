@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/provider/count_provider.dart';
+import 'package:friend_task_share/provider/task_name_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -7,27 +7,31 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(counterProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Riverpod counter example'),
       ),
       body: Center(
-        child: Text(
-          '$count',
-          style: Theme.of(context).textTheme.headline4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextField(
+              onChanged: (value) {
+                ref.read(taskNameProvider.notifier).set(value);
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/detail',
+                );
+              },
+              child: const Text('Navigate to detail screen'),
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(counterProvider.notifier).increment();
-          Navigator.pushNamed(
-            context,
-            '/detail',
-          );
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }

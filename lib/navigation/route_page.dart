@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/main.dart';
 import 'package:friend_task_share/ui/detail_screen.dart';
 import 'package:friend_task_share/ui/home_screen.dart';
 import 'package:friend_task_share/ui/unknown_screen.dart';
