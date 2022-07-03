@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/ui/detail_screen.dart';
-import 'package:friend_task_share/ui/home_screen.dart';
+import 'package:friend_task_share/ui/title_screen.dart';
 import 'package:friend_task_share/ui/unknown_screen.dart';
 
 class RoutePage extends StatelessWidget {
@@ -12,10 +12,10 @@ class RoutePage extends StatelessWidget {
       onGenerateRoute: (settings) {
         // Handle '/'
         if (settings.name == '/') {
-          return MaterialPageRoute(builder: (context) => const HomeScreen());
+          return MaterialPageRoute(builder: (context) => const TitleScreen());
         }
 
-        // // Handle '/detail'
+        // Handle '/detail'
         if (settings.name == '/detail') {
           return MaterialPageRoute(builder: (context) => const DetailScreen());
         }
