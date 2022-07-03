@@ -4,29 +4,38 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var taskFieldController = TextEditingController();
+    final taskNames = ref.watch(taskNameProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Riverpod counter example'),
-      ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextField(controller: taskFieldController),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(taskNameProvider).add(taskFieldController.text);
-                Navigator.pushNamed(
-                  context,
-                  '/detail',
-                );
-              },
-              child: const Text('Navigate to detail screen'),
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: taskNames.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(taskNames[index]),
+                    subtitle: const Text("2022/12/31まで"),
+                    onTap: () {},
+                    trailing: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("ごほうびをあげる"),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("自分のタスク"),
+                ),
+              ),
             ),
           ],
         ),

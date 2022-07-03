@@ -20,7 +20,10 @@ class TitleScreen extends HookConsumerWidget {
                 SignInButton(
                   Buttons.Google,
                   text: "Googleでログイン",
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    '/home',
+                  ),
                 ),
                 SignInButton(
                   Buttons.Twitter,
