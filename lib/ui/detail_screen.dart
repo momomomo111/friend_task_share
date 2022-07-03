@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/provider/task_name_provider.dart';
+import 'package:friend_task_share/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DetailScreen extends HookConsumerWidget {
@@ -7,16 +7,22 @@ class DetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskName = ref.watch(taskNameProvider);
-
+    final taskNames = ref.watch(taskNameProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Navigation example'),
       ),
       body: Center(
-        child: Text(
-          taskName,
-          style: Theme.of(context).textTheme.headline4,
+        child: ListView.builder(
+          itemCount: taskNames.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(
+                taskNames[index],
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/provider/task_name_provider.dart';
+import 'package:friend_task_share/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -7,6 +7,7 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var taskFieldController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Riverpod counter example'),
@@ -16,13 +17,10 @@ class HomeScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              onChanged: (value) {
-                ref.read(taskNameProvider.notifier).set(value);
-              },
-            ),
+            TextField(controller: taskFieldController),
             ElevatedButton(
               onPressed: () {
+                ref.read(taskNameProvider).add(taskFieldController.text);
                 Navigator.pushNamed(
                   context,
                   '/detail',
