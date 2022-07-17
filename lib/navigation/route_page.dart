@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friend_task_share/ui/add_task_screen.dart';
 import 'package:friend_task_share/ui/detail_screen.dart';
 import 'package:friend_task_share/ui/gohobi_screen.dart';
 import 'package:friend_task_share/ui/home_screen.dart';
@@ -42,6 +43,12 @@ class RoutePage extends StatelessWidget {
         if (settings.name == '/mytask') {
           return MaterialPageRoute(
               builder: (context) => const SafeArea(child: MyTaskScreen()));
+        }
+
+        // Handle '/addTask'
+        if (settings.name == '/addTask') {
+          return MaterialPageRoute(
+              builder: (context) => const SafeArea(child: AddTaskScreen()));
         }
 
         // Handle '/unknown'

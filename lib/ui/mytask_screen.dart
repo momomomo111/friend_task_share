@@ -29,6 +29,18 @@ class MyTaskScreen extends HookConsumerWidget {
                 },
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/addTask');
+                  },
+                  child: const Text("タスク追加"),
+                ),
+              ),
+            ),
           ],
         ),
       ),
