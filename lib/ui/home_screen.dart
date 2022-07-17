@@ -18,7 +18,9 @@ class HomeScreen extends HookConsumerWidget {
                   return ListTile(
                     title: Text(taskNames[index]),
                     subtitle: const Text("2022/12/31まで"),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/detail');
+                    },
                     trailing: ElevatedButton(
                       onPressed: () {},
                       child: const Text("ごほうびをあげる"),

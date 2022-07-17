@@ -13,26 +13,26 @@ class DetailScreen extends HookConsumerWidget {
         title: const Text('Navigation example'),
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: taskNames.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(
-                taskNames[index],
-                style: Theme.of(context).textTheme.headline4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(taskNames[0], style: Theme.of(context).textTheme.headline4),
+            Text('・小タスク1', style: Theme.of(context).textTheme.headline5),
+            Text('・小タスク2', style: Theme.of(context).textTheme.headline5),
+            Text('・小タスク3', style: Theme.of(context).textTheme.headline5),
+            Text('2022/12/31まで', style: Theme.of(context).textTheme.subtitle1),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('ごほうびをあげる'),
+                ),
               ),
-            );
-          },
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            '/',
-          );
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
