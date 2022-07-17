@@ -8,6 +8,9 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final taskNames = ref.watch(friendtaskNameProvider);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('ホーム画面'),
+      ),
       body: Center(
         child: Column(
           children: <Widget>[

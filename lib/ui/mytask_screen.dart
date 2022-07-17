@@ -9,7 +9,7 @@ class MyTaskScreen extends HookConsumerWidget {
     final taskNames = ref.watch(mytaskNameProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Navigation example'),
+        title: const Text('自分のタスクリスト画面'),
       ),
       body: Center(
         child: Column(

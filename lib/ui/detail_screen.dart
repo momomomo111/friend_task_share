@@ -10,7 +10,7 @@ class DetailScreen extends HookConsumerWidget {
     final taskNames = ref.watch(friendtaskNameProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Navigation example'),
+        title: const Text('タスク詳細画面'),
       ),
       body: Center(
         child: Column(
