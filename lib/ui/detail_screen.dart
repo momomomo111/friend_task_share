@@ -26,7 +26,9 @@ class DetailScreen extends HookConsumerWidget {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/gohobi');
+                  },
                   child: const Text('ごほうびをあげる'),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/ui/detail_screen.dart';
+import 'package:friend_task_share/ui/gohobi_screen.dart';
 import 'package:friend_task_share/ui/home_screen.dart';
 import 'package:friend_task_share/ui/title_screen.dart';
 import 'package:friend_task_share/ui/unknown_screen.dart';
@@ -30,6 +31,13 @@ class RoutePage extends StatelessWidget {
               builder: (context) => const SafeArea(child: DetailScreen()));
         }
 
+        // Handle 'gohobi'
+        if (settings.name == '/gohobi') {
+          return MaterialPageRoute(
+              builder: (context) => const SafeArea(child: GohobiScreen()));
+        }
+
+        // Handle '/unknown'
         return MaterialPageRoute(
             builder: (context) => const SafeArea(child: UnknownScreen()));
       },

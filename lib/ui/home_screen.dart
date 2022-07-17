@@ -22,7 +22,9 @@ class HomeScreen extends HookConsumerWidget {
                       Navigator.pushNamed(context, '/detail');
                     },
                     trailing: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/gohobi');
+                      },
                       child: const Text("ごほうびをあげる"),
                     ),
                   );
