@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:friend_task_share/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MyTaskScreen extends HookConsumerWidget {
+  const MyTaskScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskNames = ref.watch(friendtaskNameProvider);
+    final taskNames = ref.watch(mytaskNameProvider);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navigation example'),
+      ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Expanded(
               child: ListView.builder(
@@ -21,26 +25,8 @@ class HomeScreen extends HookConsumerWidget {
                     onTap: () {
                       Navigator.pushNamed(context, '/detail');
                     },
-                    trailing: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/gohobi');
-                      },
-                      child: const Text("ごほうびをあげる"),
-                    ),
                   );
                 },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/mytask');
-                  },
-                  child: const Text("自分のタスク"),
-                ),
               ),
             ),
           ],

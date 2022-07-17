@@ -7,7 +7,7 @@ class DetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskNames = ref.watch(taskNameProvider);
+    final taskNames = ref.watch(friendtaskNameProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Navigation example'),
