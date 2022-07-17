@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/main.dart';
+import 'package:friend_task_share/navigation/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyTaskScreen extends HookConsumerWidget {
@@ -23,7 +25,7 @@ class MyTaskScreen extends HookConsumerWidget {
                     title: Text(taskNames[index]),
                     subtitle: const Text("2022/12/31まで"),
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail');
+                      AutoRouter.of(context).push(const DetailRoute());
                     },
                   );
                 },
@@ -35,7 +37,7 @@ class MyTaskScreen extends HookConsumerWidget {
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/addTask');
+                    AutoRouter.of(context).push(const AddTaskRoute());
                   },
                   child: const Text("タスク追加"),
                 ),

@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/main.dart';
+import 'package:friend_task_share/navigation/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -22,11 +24,11 @@ class HomeScreen extends HookConsumerWidget {
                     title: Text(taskNames[index]),
                     subtitle: const Text("2022/12/31まで"),
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail');
+                      AutoRouter.of(context).push(const DetailRoute());
                     },
                     trailing: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/gohobi');
+                        AutoRouter.of(context).push(const GohobiRoute());
                       },
                       child: const Text("ごほうびをあげる"),
                     ),
@@ -40,7 +42,7 @@ class HomeScreen extends HookConsumerWidget {
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/mytask');
+                    AutoRouter.of(context).push(const MyTaskRoute());
                   },
                   child: const Text("自分のタスク"),
                 ),

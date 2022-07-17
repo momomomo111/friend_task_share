@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:friend_task_share/navigation/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AddTaskScreen extends HookConsumerWidget {
@@ -29,7 +31,7 @@ class AddTaskScreen extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/mytask');
+                AutoRouter.of(context).pop();
               },
               child: const Text('入力完了'),
             ),

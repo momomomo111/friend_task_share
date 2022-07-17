@@ -14,7 +14,7 @@ final mytaskNameProvider =
 
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: RoutePage(),
     ),
   );
