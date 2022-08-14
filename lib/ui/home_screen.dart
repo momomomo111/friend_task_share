@@ -13,6 +13,15 @@ class HomeScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ホーム画面'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.person_add),
+            onPressed: () {
+              AutoRouter.of(context).push(const AddUserRoute());
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: Center(
         child: Column(
