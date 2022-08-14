@@ -25,6 +25,23 @@ class MyTaskScreen extends HookConsumerWidget {
                   return ListTile(
                     title: Text(taskNames[index]),
                     subtitle: const Text("2022/12/31まで"),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        Icon(
+                          Icons.account_circle,
+                          size: 60,
+                        ),
+                        Icon(
+                          Icons.account_circle,
+                          size: 60,
+                        ),
+                        Icon(
+                          Icons.account_circle,
+                          size: 60,
+                        ),
+                      ],
+                    ),
                     onTap: () {
                       AutoRouter.of(context).push(const DetailRoute());
                     },
