@@ -19,11 +19,36 @@ class DetailScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            const SizedBox(height: 40),
             Text(taskNames[0], style: Theme.of(context).textTheme.headline4),
-            Text('・小タスク1', style: Theme.of(context).textTheme.headline5),
-            Text('・小タスク2', style: Theme.of(context).textTheme.headline5),
-            Text('・小タスク3', style: Theme.of(context).textTheme.headline5),
+            const SizedBox(height: 20),
             Text('2022/12/31まで', style: Theme.of(context).textTheme.subtitle1),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('・小タスクn',
+                          style: Theme.of(context).textTheme.headline5),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text('ごほうびをもらった友達', style: Theme.of(context).textTheme.headline5),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text('ユーザ名1', style: Theme.of(context).textTheme.headline5),
+                Text('ユーザ名2', style: Theme.of(context).textTheme.headline5),
+                Text('ユーザ名3', style: Theme.of(context).textTheme.headline5),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(32.0),
               child: Align(
