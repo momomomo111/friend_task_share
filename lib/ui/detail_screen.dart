@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/main.dart';
-import 'package:friend_task_share/navigation/app_router.gr.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../main.dart';
+import '../navigation/app_router.gr.dart';
 
 class DetailScreen extends HookConsumerWidget {
   const DetailScreen({Key? key}) : super(key: key);

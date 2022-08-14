@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/navigation/app_router.gr.dart';
+
+import 'app_router.gr.dart';
 
 class RoutePage extends StatelessWidget {
   RoutePage({Key? key}) : super(key: key);
