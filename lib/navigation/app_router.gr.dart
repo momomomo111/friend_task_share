@@ -19,7 +19,7 @@ import '../ui/detail_screen.dart' as _i4;
 import '../ui/gohobi_screen.dart' as _i5;
 import '../ui/home_screen.dart' as _i2;
 import '../ui/mytask_screen.dart' as _i3;
-import '../ui/title_screen.dart' as _i1;
+import '../ui/login_screen.dart' as _i1;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
@@ -29,7 +29,7 @@ class AppRouter extends _i8.RootStackRouter {
   final Map<String, _i8.PageFactory> pagesMap = {
     TitleRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.TitleScreen());
+          routeData: routeData, child: const _i1.LoginScreen());
     },
     HomeRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
@@ -70,7 +70,7 @@ class AppRouter extends _i8.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.TitleScreen]
+/// [_i1.LoginScreen]
 class TitleRoute extends _i8.PageRouteInfo<void> {
   const TitleRoute() : super(TitleRoute.name, path: '/');
 

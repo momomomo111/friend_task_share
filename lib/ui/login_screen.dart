@@ -7,8 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../main.dart';
 import '../navigation/app_router.gr.dart';
 
-class TitleScreen extends HookConsumerWidget {
-  const TitleScreen({Key? key}) : super(key: key);
+class LoginScreen extends HookConsumerWidget {
+  const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final googleProvider = ref.watch(googlSignInProvider);

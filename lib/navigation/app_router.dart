@@ -6,12 +6,12 @@ import '../ui/detail_screen.dart';
 import '../ui/gohobi_screen.dart';
 import '../ui/home_screen.dart';
 import '../ui/mytask_screen.dart';
-import '../ui/title_screen.dart';
+import '../ui/login_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: TitleScreen, initial: true),
+    AutoRoute(page: LoginScreen, initial: true),
     AutoRoute(page: HomeScreen),
     AutoRoute(page: MyTaskScreen),
     AutoRoute(page: DetailScreen),
