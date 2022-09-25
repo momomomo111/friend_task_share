@@ -9,6 +9,7 @@ class HomeScreen extends HookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final googleProvider = ref.watch(googlSignInProvider);
     final taskNames = ref.watch(friendtaskNameProvider);
     return Scaffold(
       appBar: AppBar(
@@ -18,6 +19,14 @@ class HomeScreen extends HookConsumerWidget {
             icon: const Icon(Icons.person_add),
             onPressed: () {
               AutoRouter.of(context).push(const AddUserRoute());
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              googleProvider.logout(() {
+                AutoRouter.of(context).push(const TitleRoute());
+              });
             },
           ),
           const SizedBox(width: 16),

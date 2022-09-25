@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'viewmodel/google_signin_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'firebase_options.dart';
@@ -14,6 +15,9 @@ final friendtaskNameProvider =
 final mytaskNameProvider =
     StateNotifierProvider<MyTaskNameViewModel, List<String>>(
         (_) => MyTaskNameViewModel());
+
+final googlSignInProvider =
+    ChangeNotifierProvider((_) => GooglSignInNotifier());
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
