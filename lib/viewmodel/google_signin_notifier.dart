@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GooglSignInNotifier extends ChangeNotifier {
   final _googleSignIn = GoogleSignIn();
-  FirebaseAuth? auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   Future googleLogin(void Function() onSuccess) async {
     try {
@@ -21,7 +21,7 @@ class GooglSignInNotifier extends ChangeNotifier {
         idToken: googlAuth.idToken,
       );
 
-      await auth?.signInWithCredential(credential);
+      await auth.signInWithCredential(credential);
       notifyListeners();
       onSuccess();
     } catch (e) {

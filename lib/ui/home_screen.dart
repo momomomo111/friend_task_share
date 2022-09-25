@@ -14,7 +14,7 @@ class HomeScreen extends HookConsumerWidget {
 
     bool loading = true;
 
-    if (googleProvider.auth?.currentUser == null) {
+    if (googleProvider.auth.currentUser == null) {
       AutoRouter.of(context).push(const LoginRoute());
     } else {
       loading = false;
