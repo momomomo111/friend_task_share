@@ -11,65 +11,78 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final googleProvider = ref.watch(googlSignInProvider);
     final taskNames = ref.watch(friendtaskNameProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ホーム画面'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.person_add),
-            onPressed: () {
-              AutoRouter.of(context).push(const AddUserRoute());
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              googleProvider.logout(() {
-                AutoRouter.of(context).push(const TitleRoute());
-              });
-            },
-          ),
-          const SizedBox(width: 16),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                itemCount: taskNames.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(taskNames[index]),
-                    subtitle: const Text("2022/12/31まで"),
-                    onTap: () {
-                      AutoRouter.of(context).push(const DetailRoute());
-                    },
-                    trailing: ElevatedButton(
-                      onPressed: () {
-                        AutoRouter.of(context).push(const GohobiRoute());
-                      },
-                      child: const Text("ごほうびをあげる"),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
+
+    bool loading = true;
+
+    if (googleProvider.auth?.currentUser == null) {
+      AutoRouter.of(context).push(const LoginRoute());
+    } else {
+      loading = false;
+    }
+
+    return !loading
+        ? Scaffold(
+            appBar: AppBar(
+              title: const Text('ホーム画面'),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.person_add),
                   onPressed: () {
-                    AutoRouter.of(context).push(const MyTaskRoute());
+                    AutoRouter.of(context).push(const AddUserRoute());
                   },
-                  child: const Text("自分のタスク"),
                 ),
+                IconButton(
+                  icon: const Icon(Icons.logout),
+                  onPressed: () {
+                    googleProvider.logout(() {
+                      AutoRouter.of(context).push(const LoginRoute());
+                    });
+                  },
+                ),
+                const SizedBox(width: 16),
+              ],
+            ),
+            body: Center(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: taskNames.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text(taskNames[index]),
+                          subtitle: const Text("2022/12/31まで"),
+                          onTap: () {
+                            AutoRouter.of(context).push(const DetailRoute());
+                          },
+                          trailing: ElevatedButton(
+                            onPressed: () {
+                              AutoRouter.of(context).push(const GohobiRoute());
+                            },
+                            child: const Text("ごほうびをあげる"),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          AutoRouter.of(context).push(const MyTaskRoute());
+                        },
+                        child: const Text("自分のタスク"),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : const Center(
+            child: CircularProgressIndicator(),
+          );
   }
 }

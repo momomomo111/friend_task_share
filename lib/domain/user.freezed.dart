@@ -136,7 +136,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_User with DiagnosticableTreeMixin implements _User {
+class _$_User implements _User {
   const _$_User(
       {required this.id,
       required this.name,
@@ -167,20 +167,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'User(id: $id, name: $name, imageUrl: $imageUrl, taskList: $taskList, friendUser: $friendUser)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl))
-      ..add(DiagnosticsProperty('taskList', taskList))
-      ..add(DiagnosticsProperty('friendUser', friendUser));
   }
 
   @override

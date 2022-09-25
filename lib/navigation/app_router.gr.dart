@@ -18,8 +18,8 @@ import '../ui/add_user_screen.dart' as _i7;
 import '../ui/detail_screen.dart' as _i4;
 import '../ui/gohobi_screen.dart' as _i5;
 import '../ui/home_screen.dart' as _i2;
-import '../ui/mytask_screen.dart' as _i3;
 import '../ui/login_screen.dart' as _i1;
+import '../ui/mytask_screen.dart' as _i3;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
@@ -27,7 +27,7 @@ class AppRouter extends _i8.RootStackRouter {
 
   @override
   final Map<String, _i8.PageFactory> pagesMap = {
-    TitleRoute.name: (routeData) {
+    LoginRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.LoginScreen());
     },
@@ -59,8 +59,8 @@ class AppRouter extends _i8.RootStackRouter {
 
   @override
   List<_i8.RouteConfig> get routes => [
-        _i8.RouteConfig(TitleRoute.name, path: '/'),
-        _i8.RouteConfig(HomeRoute.name, path: '/home-screen'),
+        _i8.RouteConfig(LoginRoute.name, path: '/login-screen'),
+        _i8.RouteConfig(HomeRoute.name, path: '/'),
         _i8.RouteConfig(MyTaskRoute.name, path: '/my-task-screen'),
         _i8.RouteConfig(DetailRoute.name, path: '/detail-screen'),
         _i8.RouteConfig(GohobiRoute.name, path: '/gohobi-screen'),
@@ -71,16 +71,16 @@ class AppRouter extends _i8.RootStackRouter {
 
 /// generated route for
 /// [_i1.LoginScreen]
-class TitleRoute extends _i8.PageRouteInfo<void> {
-  const TitleRoute() : super(TitleRoute.name, path: '/');
+class LoginRoute extends _i8.PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/login-screen');
 
-  static const String name = 'TitleRoute';
+  static const String name = 'LoginRoute';
 }
 
 /// generated route for
 /// [_i2.HomeScreen]
 class HomeRoute extends _i8.PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/home-screen');
+  const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
 }

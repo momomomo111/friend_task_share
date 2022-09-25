@@ -11,8 +11,8 @@ import '../ui/login_screen.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: LoginScreen, initial: true),
-    AutoRoute(page: HomeScreen),
+    AutoRoute(page: LoginScreen),
+    AutoRoute(page: HomeScreen, initial: true),
     AutoRoute(page: MyTaskScreen),
     AutoRoute(page: DetailScreen),
     AutoRoute(page: GohobiScreen),

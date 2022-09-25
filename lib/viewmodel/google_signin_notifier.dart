@@ -5,18 +5,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class GooglSignInNotifier extends ChangeNotifier {
   final _googleSignIn = GoogleSignIn();
-  final _auth = FirebaseAuth.instance;
-
-  GoogleSignInAccount? _user;
-  GoogleSignInAccount get user => _user!;
-  FirebaseAuth get auth => _auth;
+  FirebaseAuth? auth = FirebaseAuth.instance;
 
   Future googleLogin(void Function() onSuccess) async {
     try {
       final googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) return;
-      _user = googleUser;
 
       final GoogleSignInAuthentication googlAuth =
           await googleUser.authentication;
@@ -26,10 +21,11 @@ class GooglSignInNotifier extends ChangeNotifier {
         idToken: googlAuth.idToken,
       );
 
-      await _auth.signInWithCredential(credential);
+      await auth?.signInWithCredential(credential);
       notifyListeners();
       onSuccess();
     } catch (e) {
+      // ignore: avoid_print
       print('Error: $e');
     }
   }
