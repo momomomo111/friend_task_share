@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Task {
   int get id => throw _privateConstructorUsedError;
   String get taskName => throw _privateConstructorUsedError;
+  DateTime get deadline => throw _privateConstructorUsedError;
   List<String> get smallTaskName => throw _privateConstructorUsedError;
   List<Gohobi> get gohobiList => throw _privateConstructorUsedError;
 
@@ -32,6 +33,7 @@ abstract class $TaskCopyWith<$Res> {
   $Res call(
       {int id,
       String taskName,
+      DateTime deadline,
       List<String> smallTaskName,
       List<Gohobi> gohobiList});
 }
@@ -48,6 +50,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? taskName = freezed,
+    Object? deadline = freezed,
     Object? smallTaskName = freezed,
     Object? gohobiList = freezed,
   }) {
@@ -60,6 +63,10 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
               as String,
+      deadline: deadline == freezed
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       smallTaskName: smallTaskName == freezed
           ? _value.smallTaskName
           : smallTaskName // ignore: cast_nullable_to_non_nullable
@@ -80,6 +87,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   $Res call(
       {int id,
       String taskName,
+      DateTime deadline,
       List<String> smallTaskName,
       List<Gohobi> gohobiList});
 }
@@ -97,6 +105,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? taskName = freezed,
+    Object? deadline = freezed,
     Object? smallTaskName = freezed,
     Object? gohobiList = freezed,
   }) {
@@ -109,6 +118,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
               as String,
+      deadline: deadline == freezed
+          ? _value.deadline
+          : deadline // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       smallTaskName: smallTaskName == freezed
           ? _value._smallTaskName
           : smallTaskName // ignore: cast_nullable_to_non_nullable
@@ -127,6 +140,7 @@ class _$_Task implements _Task {
   const _$_Task(
       {required this.id,
       required this.taskName,
+      required this.deadline,
       required final List<String> smallTaskName,
       required final List<Gohobi> gohobiList})
       : _smallTaskName = smallTaskName,
@@ -136,6 +150,8 @@ class _$_Task implements _Task {
   final int id;
   @override
   final String taskName;
+  @override
+  final DateTime deadline;
   final List<String> _smallTaskName;
   @override
   List<String> get smallTaskName {
@@ -152,7 +168,7 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, taskName: $taskName, smallTaskName: $smallTaskName, gohobiList: $gohobiList)';
+    return 'Task(id: $id, taskName: $taskName, deadline: $deadline, smallTaskName: $smallTaskName, gohobiList: $gohobiList)';
   }
 
   @override
@@ -162,6 +178,7 @@ class _$_Task implements _Task {
             other is _$_Task &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.taskName, taskName) &&
+            const DeepCollectionEquality().equals(other.deadline, deadline) &&
             const DeepCollectionEquality()
                 .equals(other._smallTaskName, _smallTaskName) &&
             const DeepCollectionEquality()
@@ -173,6 +190,7 @@ class _$_Task implements _Task {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(taskName),
+      const DeepCollectionEquality().hash(deadline),
       const DeepCollectionEquality().hash(_smallTaskName),
       const DeepCollectionEquality().hash(_gohobiList));
 
@@ -186,6 +204,7 @@ abstract class _Task implements Task {
   const factory _Task(
       {required final int id,
       required final String taskName,
+      required final DateTime deadline,
       required final List<String> smallTaskName,
       required final List<Gohobi> gohobiList}) = _$_Task;
 
@@ -193,6 +212,8 @@ abstract class _Task implements Task {
   int get id;
   @override
   String get taskName;
+  @override
+  DateTime get deadline;
   @override
   List<String> get smallTaskName;
   @override

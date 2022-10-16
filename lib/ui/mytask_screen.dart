@@ -43,7 +43,8 @@ class MyTaskScreen extends HookConsumerWidget {
                       ],
                     ),
                     onTap: () {
-                      AutoRouter.of(context).push(const DetailRoute());
+                      // AutoRouter.of(context)
+                      //     .push(DetailRoute(task: taskNames[index]));
                     },
                   );
                 },

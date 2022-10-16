@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i9;
 
+import '../domain/task.dart' as _i10;
 import '../ui/add_task_screen.dart' as _i6;
 import '../ui/add_user_screen.dart' as _i7;
 import '../ui/detail_screen.dart' as _i4;
@@ -40,8 +41,10 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData, child: const _i3.MyTaskScreen());
     },
     DetailRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailRouteArgs>();
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.DetailScreen());
+          routeData: routeData,
+          child: _i4.DetailScreen(key: args.key, task: args.task));
     },
     GohobiRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
@@ -95,10 +98,26 @@ class MyTaskRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.DetailScreen]
-class DetailRoute extends _i8.PageRouteInfo<void> {
-  const DetailRoute() : super(DetailRoute.name, path: '/detail-screen');
+class DetailRoute extends _i8.PageRouteInfo<DetailRouteArgs> {
+  DetailRoute({_i9.Key? key, required _i10.Task task})
+      : super(DetailRoute.name,
+            path: '/detail-screen',
+            args: DetailRouteArgs(key: key, task: task));
 
   static const String name = 'DetailRoute';
+}
+
+class DetailRouteArgs {
+  const DetailRouteArgs({this.key, required this.task});
+
+  final _i9.Key? key;
+
+  final _i10.Task task;
+
+  @override
+  String toString() {
+    return 'DetailRouteArgs{key: $key, task: $task}';
+  }
 }
 
 /// generated route for

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'domain/task.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'firebase_options.dart';
@@ -9,7 +10,7 @@ import 'viewmodel/google_signin_notifier.dart';
 import 'viewmodel/mytask_name_viewmodel.dart';
 
 final friendtaskNameProvider =
-    StateNotifierProvider<FriendTaskNameViewModel, List<String>>(
+    StateNotifierProvider<FriendTaskNameViewModel, List<Task>>(
         (_) => FriendTaskNameViewModel());
 
 final mytaskNameProvider =

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../main.dart';
 import '../navigation/app_router.gr.dart';
@@ -49,11 +50,16 @@ class HomeScreen extends HookConsumerWidget {
                     child: ListView.builder(
                       itemCount: taskNames.length,
                       itemBuilder: (BuildContext context, int index) {
+                        DateFormat outputFormat =
+                            DateFormat('yyyy/MM/dd HH:mm');
+                        String deadline =
+                            outputFormat.format(taskNames[index].deadline);
                         return ListTile(
-                          title: Text(taskNames[index]),
-                          subtitle: const Text("2022/12/31まで"),
+                          title: Text(taskNames[index].taskName),
+                          subtitle: Text("$deadline まで"),
                           onTap: () {
-                            AutoRouter.of(context).push(const DetailRoute());
+                            AutoRouter.of(context)
+                                .push(DetailRoute(task: taskNames[index]));
                           },
                           trailing: ElevatedButton(
                             onPressed: () {

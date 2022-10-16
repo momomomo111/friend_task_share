@@ -7,6 +7,6 @@ abstract class Gohobi with _$Gohobi {
   const factory Gohobi({
     required int id,
     required String message,
-    required int fromUserId,
+    required String fromUserName,
   }) = _Gohobi;
 }

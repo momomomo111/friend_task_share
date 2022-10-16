@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Gohobi {
   int get id => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  int get fromUserId => throw _privateConstructorUsedError;
+  String get fromUserName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GohobiCopyWith<Gohobi> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$Gohobi {
 abstract class $GohobiCopyWith<$Res> {
   factory $GohobiCopyWith(Gohobi value, $Res Function(Gohobi) then) =
       _$GohobiCopyWithImpl<$Res>;
-  $Res call({int id, String message, int fromUserId});
+  $Res call({int id, String message, String fromUserName});
 }
 
 /// @nodoc
@@ -43,7 +43,7 @@ class _$GohobiCopyWithImpl<$Res> implements $GohobiCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? message = freezed,
-    Object? fromUserId = freezed,
+    Object? fromUserName = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -54,10 +54,10 @@ class _$GohobiCopyWithImpl<$Res> implements $GohobiCopyWith<$Res> {
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserId: fromUserId == freezed
-          ? _value.fromUserId
-          : fromUserId // ignore: cast_nullable_to_non_nullable
-              as int,
+      fromUserName: fromUserName == freezed
+          ? _value.fromUserName
+          : fromUserName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -67,7 +67,7 @@ abstract class _$$_GohobiCopyWith<$Res> implements $GohobiCopyWith<$Res> {
   factory _$$_GohobiCopyWith(_$_Gohobi value, $Res Function(_$_Gohobi) then) =
       __$$_GohobiCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String message, int fromUserId});
+  $Res call({int id, String message, String fromUserName});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? message = freezed,
-    Object? fromUserId = freezed,
+    Object? fromUserName = freezed,
   }) {
     return _then(_$_Gohobi(
       id: id == freezed
@@ -94,10 +94,10 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserId: fromUserId == freezed
-          ? _value.fromUserId
-          : fromUserId // ignore: cast_nullable_to_non_nullable
-              as int,
+      fromUserName: fromUserName == freezed
+          ? _value.fromUserName
+          : fromUserName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -106,18 +106,18 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
 
 class _$_Gohobi implements _Gohobi {
   const _$_Gohobi(
-      {required this.id, required this.message, required this.fromUserId});
+      {required this.id, required this.message, required this.fromUserName});
 
   @override
   final int id;
   @override
   final String message;
   @override
-  final int fromUserId;
+  final String fromUserName;
 
   @override
   String toString() {
-    return 'Gohobi(id: $id, message: $message, fromUserId: $fromUserId)';
+    return 'Gohobi(id: $id, message: $message, fromUserName: $fromUserName)';
   }
 
   @override
@@ -128,7 +128,7 @@ class _$_Gohobi implements _Gohobi {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
-                .equals(other.fromUserId, fromUserId));
+                .equals(other.fromUserName, fromUserName));
   }
 
   @override
@@ -136,7 +136,7 @@ class _$_Gohobi implements _Gohobi {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(fromUserId));
+      const DeepCollectionEquality().hash(fromUserName));
 
   @JsonKey(ignore: true)
   @override
@@ -148,14 +148,14 @@ abstract class _Gohobi implements Gohobi {
   const factory _Gohobi(
       {required final int id,
       required final String message,
-      required final int fromUserId}) = _$_Gohobi;
+      required final String fromUserName}) = _$_Gohobi;
 
   @override
   int get id;
   @override
   String get message;
   @override
-  int get fromUserId;
+  String get fromUserName;
   @override
   @JsonKey(ignore: true)
   _$$_GohobiCopyWith<_$_Gohobi> get copyWith =>
