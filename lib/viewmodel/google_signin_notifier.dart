@@ -1,11 +1,13 @@
-//ChangeNotifier
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:friend_task_share/viewmodel/user_data_viewmodel.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GooglSignInNotifier extends ChangeNotifier {
+  GooglSignInNotifier(this._read);
   final _googleSignIn = GoogleSignIn();
   FirebaseAuth auth = FirebaseAuth.instance;
+  final UserDataViewModel _read;
 
   Future googleLogin(void Function() onSuccess) async {
     try {
@@ -23,6 +25,8 @@ class GooglSignInNotifier extends ChangeNotifier {
 
       await auth.signInWithCredential(credential);
       notifyListeners();
+      _read.initBaseData(auth.currentUser!.uid, auth.currentUser!.displayName!,
+          auth.currentUser!.photoURL!);
       onSuccess();
     } catch (e) {
       // ignore: avoid_print

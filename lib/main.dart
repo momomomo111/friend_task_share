@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'domain/user_data.dart';
+import 'viewmodel/user_data_viewmodel.dart';
 import 'domain/task.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,8 +19,11 @@ final mytaskNameProvider =
     StateNotifierProvider<MyTaskNameViewModel, List<String>>(
         (_) => MyTaskNameViewModel());
 
-final googlSignInProvider =
-    ChangeNotifierProvider((_) => GooglSignInNotifier());
+final googlSignInProvider = ChangeNotifierProvider(
+    (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
+
+final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
+    (_) => UserDataViewModel());
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

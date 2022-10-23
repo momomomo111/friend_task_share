@@ -19,6 +19,11 @@ class HomeScreen extends HookConsumerWidget {
       AutoRouter.of(context).push(const LoginRoute());
     } else {
       loading = false;
+      ref.read(userDataProvider.notifier).initBaseData(
+            googleProvider.auth.currentUser!.uid,
+            googleProvider.auth.currentUser!.displayName!,
+            googleProvider.auth.currentUser!.photoURL!,
+          );
     }
 
     return !loading
