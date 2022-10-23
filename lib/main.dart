@@ -16,7 +16,7 @@ final friendtaskNameProvider =
         (_) => FriendTaskNameViewModel());
 
 final mytaskNameProvider =
-    StateNotifierProvider<MyTaskNameViewModel, List<String>>(
+    StateNotifierProvider<MyTaskNameViewModel, List<Task>>(
         (_) => MyTaskNameViewModel());
 
 final googlSignInProvider = ChangeNotifierProvider(

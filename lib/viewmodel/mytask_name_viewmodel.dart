@@ -1,19 +1,43 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MyTaskNameViewModel extends StateNotifier<List<String>> {
+import '../domain/gohobi.dart';
+import '../domain/task.dart';
+
+class MyTaskNameViewModel extends StateNotifier<List<Task>> {
   MyTaskNameViewModel()
       : super([
-          "自分のタスク名1",
-          "自分のタスク名2",
-          "自分のタスク名3",
-          "自分のタスク名4",
-          "自分のタスク名5",
-          "自分のタスク名6",
-          "自分のタスク名7",
-          "自分のタスク名8",
-          "自分のタスク名9",
-          "自分のタスク名10",
-          "自分のタスク名11"
+          Task(
+            uid: "1",
+            taskName: "私のお風呂掃除",
+            deadline: DateTime.now(),
+            smallTaskName: ["お風呂の中を掃除する", "お風呂の外を掃除する"],
+            gohobiList: [
+              Gohobi(uid: "0", message: "よくやったね", fromUserName: "田中"),
+              Gohobi(uid: "1", message: "お疲れ様", fromUserName: "鈴木"),
+              Gohobi(uid: "2", message: "お疲れ様", fromUserName: "鈴木"),
+              Gohobi(uid: "3", message: "お疲れ様", fromUserName: "鈴木"),
+              Gohobi(uid: "4", message: "お疲れ様", fromUserName: "鈴木"),
+              Gohobi(uid: "5", message: "お疲れ様", fromUserName: "鈴木"),
+              Gohobi(uid: "6", message: "お疲れ様です", fromUserName: "佐藤")
+            ],
+          ),
+          Task(
+            uid: "2",
+            taskName: "私の洗濯",
+            deadline: DateTime(2023, 10, 10),
+            smallTaskName: ["洗濯機に入れる", "洗濯機を回す", "洗濯物を干す"],
+            gohobiList: [
+              Gohobi(uid: "7", message: "すばらしい", fromUserName: "清水"),
+              Gohobi(uid: "8", message: "お疲れ様です", fromUserName: "山田")
+            ],
+          ),
+          Task(
+            uid: "3",
+            taskName: "私の掃除",
+            deadline: DateTime(2023, 10, 9),
+            smallTaskName: ["キッチンを掃除する", "トイレを掃除する", "お風呂を掃除する"],
+            gohobiList: [],
+          ),
         ]);
 
   void add(value) {
