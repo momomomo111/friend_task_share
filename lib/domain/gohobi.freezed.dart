@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Gohobi {
-  int get id => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get fromUserName => throw _privateConstructorUsedError;
 
@@ -28,7 +28,7 @@ mixin _$Gohobi {
 abstract class $GohobiCopyWith<$Res> {
   factory $GohobiCopyWith(Gohobi value, $Res Function(Gohobi) then) =
       _$GohobiCopyWithImpl<$Res>;
-  $Res call({int id, String message, String fromUserName});
+  $Res call({String uid, String message, String fromUserName});
 }
 
 /// @nodoc
@@ -41,15 +41,15 @@ class _$GohobiCopyWithImpl<$Res> implements $GohobiCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? message = freezed,
     Object? fromUserName = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -67,7 +67,7 @@ abstract class _$$_GohobiCopyWith<$Res> implements $GohobiCopyWith<$Res> {
   factory _$$_GohobiCopyWith(_$_Gohobi value, $Res Function(_$_Gohobi) then) =
       __$$_GohobiCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String message, String fromUserName});
+  $Res call({String uid, String message, String fromUserName});
 }
 
 /// @nodoc
@@ -81,15 +81,15 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? message = freezed,
     Object? fromUserName = freezed,
   }) {
     return _then(_$_Gohobi(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -106,10 +106,10 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
 
 class _$_Gohobi implements _Gohobi {
   const _$_Gohobi(
-      {required this.id, required this.message, required this.fromUserName});
+      {required this.uid, required this.message, required this.fromUserName});
 
   @override
-  final int id;
+  final String uid;
   @override
   final String message;
   @override
@@ -117,7 +117,7 @@ class _$_Gohobi implements _Gohobi {
 
   @override
   String toString() {
-    return 'Gohobi(id: $id, message: $message, fromUserName: $fromUserName)';
+    return 'Gohobi(uid: $uid, message: $message, fromUserName: $fromUserName)';
   }
 
   @override
@@ -125,7 +125,7 @@ class _$_Gohobi implements _Gohobi {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Gohobi &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
                 .equals(other.fromUserName, fromUserName));
@@ -134,7 +134,7 @@ class _$_Gohobi implements _Gohobi {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(fromUserName));
 
@@ -146,12 +146,12 @@ class _$_Gohobi implements _Gohobi {
 
 abstract class _Gohobi implements Gohobi {
   const factory _Gohobi(
-      {required final int id,
+      {required final String uid,
       required final String message,
       required final String fromUserName}) = _$_Gohobi;
 
   @override
-  int get id;
+  String get uid;
   @override
   String get message;
   @override

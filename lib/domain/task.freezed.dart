@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Task {
-  int get id => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   String get taskName => throw _privateConstructorUsedError;
   DateTime get deadline => throw _privateConstructorUsedError;
   List<String> get smallTaskName => throw _privateConstructorUsedError;
@@ -31,7 +31,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {String uid,
       String taskName,
       DateTime deadline,
       List<String> smallTaskName,
@@ -48,17 +48,17 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? taskName = freezed,
     Object? deadline = freezed,
     Object? smallTaskName = freezed,
     Object? gohobiList = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       taskName: taskName == freezed
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -85,7 +85,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$_TaskCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {String uid,
       String taskName,
       DateTime deadline,
       List<String> smallTaskName,
@@ -103,17 +103,17 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? uid = freezed,
     Object? taskName = freezed,
     Object? deadline = freezed,
     Object? smallTaskName = freezed,
     Object? gohobiList = freezed,
   }) {
     return _then(_$_Task(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       taskName: taskName == freezed
           ? _value.taskName
           : taskName // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 
 class _$_Task implements _Task {
   const _$_Task(
-      {required this.id,
+      {required this.uid,
       required this.taskName,
       required this.deadline,
       required final List<String> smallTaskName,
@@ -147,7 +147,7 @@ class _$_Task implements _Task {
         _gohobiList = gohobiList;
 
   @override
-  final int id;
+  final String uid;
   @override
   final String taskName;
   @override
@@ -168,7 +168,7 @@ class _$_Task implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, taskName: $taskName, deadline: $deadline, smallTaskName: $smallTaskName, gohobiList: $gohobiList)';
+    return 'Task(uid: $uid, taskName: $taskName, deadline: $deadline, smallTaskName: $smallTaskName, gohobiList: $gohobiList)';
   }
 
   @override
@@ -176,7 +176,7 @@ class _$_Task implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.taskName, taskName) &&
             const DeepCollectionEquality().equals(other.deadline, deadline) &&
             const DeepCollectionEquality()
@@ -188,7 +188,7 @@ class _$_Task implements _Task {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(taskName),
       const DeepCollectionEquality().hash(deadline),
       const DeepCollectionEquality().hash(_smallTaskName),
@@ -202,14 +202,14 @@ class _$_Task implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {required final int id,
+      {required final String uid,
       required final String taskName,
       required final DateTime deadline,
       required final List<String> smallTaskName,
       required final List<Gohobi> gohobiList}) = _$_Task;
 
   @override
-  int get id;
+  String get uid;
   @override
   String get taskName;
   @override

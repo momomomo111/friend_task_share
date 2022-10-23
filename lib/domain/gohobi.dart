@@ -5,7 +5,7 @@ part 'gohobi.freezed.dart';
 @freezed
 abstract class Gohobi with _$Gohobi {
   const factory Gohobi({
-    required int id,
+    required String uid,
     required String message,
     required String fromUserName,
   }) = _Gohobi;
