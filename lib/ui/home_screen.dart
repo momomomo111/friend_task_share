@@ -26,6 +26,8 @@ class HomeScreen extends HookConsumerWidget {
           );
     }
 
+    ref.read(userDataProvider.notifier).fetchFriendUser();
+
     return !loading
         ? Scaffold(
             appBar: AppBar(
