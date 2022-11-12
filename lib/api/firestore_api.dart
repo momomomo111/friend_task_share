@@ -7,8 +7,9 @@ class FirestoreApi {
   CollectionReference tasks = firestore.collection('tasks');
   CollectionReference gohobis = firestore.collection('gohobis');
 
-  // Future<dynamic> getFriendUserId(String uid) {
-  //   return users.doc(uid).get().then(
-  //       (value) => (value.data() as Map<String, dynamic>)["friendUserId"]);
-  // }
+  Future<List<String>> fetchFriendUserId(String uid) async {
+    final friendUserId = await users.doc(uid).get().then((value) =>
+        (value.data() as Map<String, dynamic>)["friendUserId"].cast<String>());
+    return friendUserId;
+  }
 }
