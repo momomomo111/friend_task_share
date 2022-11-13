@@ -3,13 +3,13 @@ import 'package:friend_task_share/response/result.dart';
 
 import '../domain/task.dart';
 
-class FriendTaskRepository {
-  FriendTaskRepository(this._client);
+class TaskRepository {
+  TaskRepository(this._client);
 
   final FirestoreApi _client;
 
   Future<Result<List<String>>> fetchFriendUserId(String uid) async {
-    return _client
+    return await _client
         .fetchFriendUserId(uid)
         .then((friendUserId) => Result<List<String>>.success(friendUserId))
         .catchError((error) => Result<List<String>>.failure(error));
@@ -27,6 +27,19 @@ class FriendTaskRepository {
     return Result<List<String>>.success(friendTaskList);
   }
 
+  Future<Result<List<Task>>> fetchTaskList(String uid) async {
+    var taskIdList = await _client
+        .fetchTaskIdList(uid)
+        .then((value) => value)
+        .catchError((error) => throw error);
+    print("taskIdList: $taskIdList");
+    var taskList = await _client
+        .fetchTaskList(taskIdList)
+        .then((value) => value)
+        .catchError((error) => throw error);
+    return Result<List<Task>>.success(taskList);
+  }
+
   Future<Result<List<Task>>> fetchFriendUserDataList(String uid) async {
     var friendUserIdList = await fetchFriendUserId(uid).then((result) {
       return result.when(
@@ -41,7 +54,7 @@ class FriendTaskRepository {
         .fetchTaskList(friendTaskIdList)
         .then((value) => value)
         .catchError((error) => throw error);
-    print("friendTaskList: ${friendTaskList.toString()}");
+
     return Result.success(friendTaskList);
   }
 }

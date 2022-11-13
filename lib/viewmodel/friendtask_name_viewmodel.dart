@@ -1,4 +1,3 @@
-import '../domain/gohobi.dart';
 import '../domain/task.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -38,8 +37,4 @@ class FriendTaskNameViewModel extends StateNotifier<List<Task>> {
             gohobiListId: [],
           ),
         ]);
-
-  void add(value) {
-    state.add(value);
-  }
 }

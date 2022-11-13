@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/api/firestore_api.dart';
-import 'package:friend_task_share/repository/friendtask_repository.dart';
+import 'package:friend_task_share/repository/task_repository.dart';
 import 'domain/user_data.dart';
 import 'viewmodel/user_data_viewmodel.dart';
 import 'domain/task.dart';
@@ -15,23 +15,26 @@ import 'viewmodel/mytask_name_viewmodel.dart';
 
 final fireStoreApiProvider = Provider.autoDispose((ref) => FirestoreApi());
 
-final friendTaskRepositoryProvider = Provider.autoDispose(
-    (ref) => FriendTaskRepository(ref.read(fireStoreApiProvider)));
+final taskRepositoryProvider = Provider.autoDispose(
+    (ref) => TaskRepository(ref.read(fireStoreApiProvider)));
 
 final friendtaskNameProvider =
     StateNotifierProvider<FriendTaskNameViewModel, List<Task>>(
         (_) => FriendTaskNameViewModel());
 
 final mytaskNameProvider =
-    StateNotifierProvider<MyTaskNameViewModel, List<Task>>(
-        (_) => MyTaskNameViewModel());
+    StateNotifierProvider<MyTaskNameViewModel, AsyncValue<List<Task>>>(
+        (ref) => MyTaskNameViewModel(
+              ref.read(taskRepositoryProvider),
+              ref.read(userDataProvider.notifier),
+            ));
 
 final googlSignInProvider = ChangeNotifierProvider(
     (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
 
 final userDataProvider =
     StateNotifierProvider<UserDataViewModel, AsyncValue<UserData>>(
-        (ref) => UserDataViewModel(ref.read(friendTaskRepositoryProvider)));
+        (ref) => UserDataViewModel(ref.read(taskRepositoryProvider)));
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
