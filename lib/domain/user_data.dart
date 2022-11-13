@@ -11,5 +11,5 @@ abstract class UserData with _$UserData {
       required String name,
       required String imageUrl,
       required List<Task> taskList,
-      required List<UserData> friendUser}) = _UserData;
+      required List<String> friendIdList}) = _UserData;
 }

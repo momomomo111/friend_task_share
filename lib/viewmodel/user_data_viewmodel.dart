@@ -14,20 +14,19 @@ class UserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
         name: name,
         imageUrl: imageUrl,
         taskList: [],
-        friendUser: []));
+        friendIdList: []));
   }
 
-  void fetchFriendUser() async {
-    List<String> friendUserIdList = [];
+  void fetchFriendUserIdList() async {
     await _friendTaskRepository
         .fetchFriendUserId(state.value!.uid)
         .then((result) {
-      result.when(
-          success: ((value) => friendUserIdList = value),
-          failure: (error) {
-            state = AsyncValue.error(error);
-          });
+      result.when(success: ((value) {
+        state = AsyncValue.data(state.value!.copyWith(friendIdList: value));
+        print(state.value.toString());
+      }), failure: (error) {
+        state = AsyncValue.error(error);
+      });
     });
-    print(friendUserIdList);
   }
 }

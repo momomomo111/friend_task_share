@@ -30,7 +30,7 @@ final googlSignInProvider = ChangeNotifierProvider(
     (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
 
 final userDataProvider =
-    StateNotifierProvider.autoDispose<UserDataViewModel, AsyncValue<UserData>>(
+    StateNotifierProvider<UserDataViewModel, AsyncValue<UserData>>(
         (ref) => UserDataViewModel(ref.read(friendTaskRepositoryProvider)));
 
 void main() async {

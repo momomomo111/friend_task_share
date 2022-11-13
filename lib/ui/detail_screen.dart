@@ -51,11 +51,11 @@ class DetailScreen extends HookConsumerWidget {
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 28.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: task.gohobiList.length,
+                itemCount: task.gohobiListId.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(task.gohobiList[index].fromUserName,
+                    child: Text(task.gohobiListId[index],
                         style: Theme.of(context).textTheme.headline5),
                   );
                 },

@@ -20,7 +20,7 @@ mixin _$Task {
   String get taskName => throw _privateConstructorUsedError;
   DateTime get deadline => throw _privateConstructorUsedError;
   List<String> get smallTaskName => throw _privateConstructorUsedError;
-  List<Gohobi> get gohobiList => throw _privateConstructorUsedError;
+  List<String> get gohobiListId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $TaskCopyWith<$Res> {
       String taskName,
       DateTime deadline,
       List<String> smallTaskName,
-      List<Gohobi> gohobiList});
+      List<String> gohobiListId});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
     Object? taskName = freezed,
     Object? deadline = freezed,
     Object? smallTaskName = freezed,
-    Object? gohobiList = freezed,
+    Object? gohobiListId = freezed,
   }) {
     return _then(_value.copyWith(
       uid: uid == freezed
@@ -71,10 +71,10 @@ class _$TaskCopyWithImpl<$Res> implements $TaskCopyWith<$Res> {
           ? _value.smallTaskName
           : smallTaskName // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      gohobiList: gohobiList == freezed
-          ? _value.gohobiList
-          : gohobiList // ignore: cast_nullable_to_non_nullable
-              as List<Gohobi>,
+      gohobiListId: gohobiListId == freezed
+          ? _value.gohobiListId
+          : gohobiListId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -89,7 +89,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       String taskName,
       DateTime deadline,
       List<String> smallTaskName,
-      List<Gohobi> gohobiList});
+      List<String> gohobiListId});
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
     Object? taskName = freezed,
     Object? deadline = freezed,
     Object? smallTaskName = freezed,
-    Object? gohobiList = freezed,
+    Object? gohobiListId = freezed,
   }) {
     return _then(_$_Task(
       uid: uid == freezed
@@ -126,10 +126,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
           ? _value._smallTaskName
           : smallTaskName // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      gohobiList: gohobiList == freezed
-          ? _value._gohobiList
-          : gohobiList // ignore: cast_nullable_to_non_nullable
-              as List<Gohobi>,
+      gohobiListId: gohobiListId == freezed
+          ? _value._gohobiListId
+          : gohobiListId // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -142,9 +142,9 @@ class _$_Task implements _Task {
       required this.taskName,
       required this.deadline,
       required final List<String> smallTaskName,
-      required final List<Gohobi> gohobiList})
+      required final List<String> gohobiListId})
       : _smallTaskName = smallTaskName,
-        _gohobiList = gohobiList;
+        _gohobiListId = gohobiListId;
 
   @override
   final String uid;
@@ -159,16 +159,16 @@ class _$_Task implements _Task {
     return EqualUnmodifiableListView(_smallTaskName);
   }
 
-  final List<Gohobi> _gohobiList;
+  final List<String> _gohobiListId;
   @override
-  List<Gohobi> get gohobiList {
+  List<String> get gohobiListId {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_gohobiList);
+    return EqualUnmodifiableListView(_gohobiListId);
   }
 
   @override
   String toString() {
-    return 'Task(uid: $uid, taskName: $taskName, deadline: $deadline, smallTaskName: $smallTaskName, gohobiList: $gohobiList)';
+    return 'Task(uid: $uid, taskName: $taskName, deadline: $deadline, smallTaskName: $smallTaskName, gohobiListId: $gohobiListId)';
   }
 
   @override
@@ -182,7 +182,7 @@ class _$_Task implements _Task {
             const DeepCollectionEquality()
                 .equals(other._smallTaskName, _smallTaskName) &&
             const DeepCollectionEquality()
-                .equals(other._gohobiList, _gohobiList));
+                .equals(other._gohobiListId, _gohobiListId));
   }
 
   @override
@@ -192,7 +192,7 @@ class _$_Task implements _Task {
       const DeepCollectionEquality().hash(taskName),
       const DeepCollectionEquality().hash(deadline),
       const DeepCollectionEquality().hash(_smallTaskName),
-      const DeepCollectionEquality().hash(_gohobiList));
+      const DeepCollectionEquality().hash(_gohobiListId));
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +206,7 @@ abstract class _Task implements Task {
       required final String taskName,
       required final DateTime deadline,
       required final List<String> smallTaskName,
-      required final List<Gohobi> gohobiList}) = _$_Task;
+      required final List<String> gohobiListId}) = _$_Task;
 
   @override
   String get uid;
@@ -217,7 +217,7 @@ abstract class _Task implements Task {
   @override
   List<String> get smallTaskName;
   @override
-  List<Gohobi> get gohobiList;
+  List<String> get gohobiListId;
   @override
   @JsonKey(ignore: true)
   _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;

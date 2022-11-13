@@ -12,6 +12,7 @@ class HomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final googleProvider = ref.watch(googlSignInProvider);
     final taskNames = ref.watch(friendtaskNameProvider);
+    final userProvider = ref.read(userDataProvider.notifier);
 
     bool loading = true;
 
@@ -19,14 +20,13 @@ class HomeScreen extends HookConsumerWidget {
       AutoRouter.of(context).push(const LoginRoute());
     } else {
       loading = false;
-      ref.read(userDataProvider.notifier).initBaseData(
-            googleProvider.auth.currentUser!.uid,
-            googleProvider.auth.currentUser!.displayName!,
-            googleProvider.auth.currentUser!.photoURL!,
-          );
+      userProvider.initBaseData(
+        googleProvider.auth.currentUser!.uid,
+        googleProvider.auth.currentUser!.displayName!,
+        googleProvider.auth.currentUser!.photoURL!,
+      );
+      userProvider.fetchFriendUserIdList();
     }
-
-    ref.read(userDataProvider.notifier).fetchFriendUser();
 
     return !loading
         ? Scaffold(
