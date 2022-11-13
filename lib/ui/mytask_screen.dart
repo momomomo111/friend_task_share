@@ -21,34 +21,39 @@ class MyTaskScreen extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: taskNames.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          DateFormat outputFormat =
-                              DateFormat('yyyy/MM/dd HH:mm');
-                          String deadline =
-                              outputFormat.format(taskNames[index].deadline);
-                          return ListTile(
-                            title: Text(taskNames[index].taskName),
-                            subtitle: Text("$deadline まで"),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                for (var i = 0;
-                                    i < taskNames[index].gohobiListId.length;
-                                    i++)
-                                  const Icon(
-                                    Icons.account_circle,
-                                    size: 60,
-                                  ),
-                              ],
-                            ),
-                            onTap: () {
-                              AutoRouter.of(context)
-                                  .push(DetailRoute(task: taskNames[index]));
-                            },
-                          );
-                        },
+                      child: RefreshIndicator(
+                        onRefresh: () => ref
+                            .read(mytaskNameProvider.notifier)
+                            .fetchTaskList(),
+                        child: ListView.builder(
+                          itemCount: taskNames.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            DateFormat outputFormat =
+                                DateFormat('yyyy/MM/dd HH:mm');
+                            String deadline =
+                                outputFormat.format(taskNames[index].deadline);
+                            return ListTile(
+                              title: Text(taskNames[index].taskName),
+                              subtitle: Text("$deadline まで"),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  for (var i = 0;
+                                      i < taskNames[index].gohobiListId.length;
+                                      i++)
+                                    const Icon(
+                                      Icons.account_circle,
+                                      size: 60,
+                                    ),
+                                ],
+                              ),
+                              onTap: () {
+                                AutoRouter.of(context)
+                                    .push(DetailRoute(task: taskNames[index]));
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     Padding(

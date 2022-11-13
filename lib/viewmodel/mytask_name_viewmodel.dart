@@ -12,7 +12,7 @@ class MyTaskNameViewModel extends StateNotifier<AsyncValue<List<Task>>> {
   final TaskRepository _taskRepository;
   final UserDataViewModel _userDataViewModel;
 
-  void fetchTaskList() async {
+  Future<void> fetchTaskList() async {
     final uid = _userDataViewModel.state.value!.uid;
     await _taskRepository.fetchTaskList(uid).then((result) {
       result.when(success: ((value) {
