@@ -26,7 +26,8 @@ class LoginScreen extends HookConsumerWidget {
                   Buttons.Google,
                   text: "Googleでログイン",
                   onPressed: () => googleProvider.googleLogin(() {
-                    AutoRouter.of(context).push(const HomeRoute());
+                    AutoRouter.of(context).replace(const HomeRoute());
+                    AutoRouter.of(context).removeUntil((route) => false);
                   }),
                 ),
                 SignInButton(

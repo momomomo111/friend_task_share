@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:friend_task_share/ui/friendtask_screen.dart';
 
 import '../ui/add_task_screen.dart';
 import '../ui/add_user_screen.dart';
@@ -13,6 +14,7 @@ import '../ui/mytask_screen.dart';
   routes: <AutoRoute>[
     AutoRoute(page: LoginScreen),
     AutoRoute(page: HomeScreen, initial: true),
+    AutoRoute(page: FriendTaskScren),
     AutoRoute(page: MyTaskScreen),
     AutoRoute(page: DetailScreen),
     AutoRoute(page: GohobiScreen),

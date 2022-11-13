@@ -22,21 +22,21 @@ final taskRepositoryProvider = Provider.autoDispose(
 final userRepositoryProvider = Provider.autoDispose(
     (ref) => UserRepository(ref.read(fireStoreApiProvider)));
 
-final friendtaskNameProvider =
-    StateNotifierProvider<FriendTaskNameViewModel, AsyncValue<List<Task>>>(
-        (ref) => FriendTaskNameViewModel(
-              ref.read(taskRepositoryProvider),
-              ref.read(userDataProvider.notifier),
-            ));
+final friendtaskNameProvider = StateNotifierProvider.autoDispose<
+        FriendTaskNameViewModel, AsyncValue<List<Task>>>(
+    (ref) => FriendTaskNameViewModel(
+          ref.read(taskRepositoryProvider),
+          ref.read(userDataProvider.notifier),
+        ));
 
-final mytaskNameProvider =
-    StateNotifierProvider<MyTaskNameViewModel, AsyncValue<List<Task>>>(
+final mytaskNameProvider = StateNotifierProvider
+    .autoDispose<MyTaskNameViewModel, AsyncValue<List<Task>>>(
         (ref) => MyTaskNameViewModel(
               ref.read(taskRepositoryProvider),
               ref.read(userDataProvider.notifier),
             ));
 
-final googlSignInProvider = ChangeNotifierProvider(
+final googlSignInProvider = ChangeNotifierProvider.autoDispose(
     (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
 
 final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
