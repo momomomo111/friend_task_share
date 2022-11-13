@@ -31,4 +31,10 @@ class FirestoreApi {
               .cast<String>());
     });
   }
+
+  Future<void> createUserData(String uid, String name, String imageUrl) async {
+    users
+        .doc(uid)
+        .set({"name": name, "imageUrl": imageUrl}, SetOptions(merge: true));
+  }
 }

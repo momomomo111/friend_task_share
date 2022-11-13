@@ -19,8 +19,6 @@ mixin _$UserData {
   String get uid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  List<Task> get taskList => throw _privateConstructorUsedError;
-  List<String> get friendIdList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserDataCopyWith<UserData> get copyWith =>
@@ -31,12 +29,7 @@ mixin _$UserData {
 abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res>;
-  $Res call(
-      {String uid,
-      String name,
-      String imageUrl,
-      List<Task> taskList,
-      List<String> friendIdList});
+  $Res call({String uid, String name, String imageUrl});
 }
 
 /// @nodoc
@@ -52,8 +45,6 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
     Object? uid = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
-    Object? taskList = freezed,
-    Object? friendIdList = freezed,
   }) {
     return _then(_value.copyWith(
       uid: uid == freezed
@@ -68,14 +59,6 @@ class _$UserDataCopyWithImpl<$Res> implements $UserDataCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      taskList: taskList == freezed
-          ? _value.taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
-      friendIdList: friendIdList == freezed
-          ? _value.friendIdList
-          : friendIdList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
@@ -86,12 +69,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
           _$_UserData value, $Res Function(_$_UserData) then) =
       __$$_UserDataCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String uid,
-      String name,
-      String imageUrl,
-      List<Task> taskList,
-      List<String> friendIdList});
+  $Res call({String uid, String name, String imageUrl});
 }
 
 /// @nodoc
@@ -109,8 +87,6 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
-    Object? taskList = freezed,
-    Object? friendIdList = freezed,
   }) {
     return _then(_$_UserData(
       uid: uid == freezed
@@ -125,14 +101,6 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      taskList: taskList == freezed
-          ? _value._taskList
-          : taskList // ignore: cast_nullable_to_non_nullable
-              as List<Task>,
-      friendIdList: friendIdList == freezed
-          ? _value._friendIdList
-          : friendIdList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
     ));
   }
 }
@@ -141,13 +109,7 @@ class __$$_UserDataCopyWithImpl<$Res> extends _$UserDataCopyWithImpl<$Res>
 
 class _$_UserData implements _UserData {
   const _$_UserData(
-      {required this.uid,
-      required this.name,
-      required this.imageUrl,
-      required final List<Task> taskList,
-      required final List<String> friendIdList})
-      : _taskList = taskList,
-        _friendIdList = friendIdList;
+      {required this.uid, required this.name, required this.imageUrl});
 
   @override
   final String uid;
@@ -155,23 +117,10 @@ class _$_UserData implements _UserData {
   final String name;
   @override
   final String imageUrl;
-  final List<Task> _taskList;
-  @override
-  List<Task> get taskList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_taskList);
-  }
-
-  final List<String> _friendIdList;
-  @override
-  List<String> get friendIdList {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_friendIdList);
-  }
 
   @override
   String toString() {
-    return 'UserData(uid: $uid, name: $name, imageUrl: $imageUrl, taskList: $taskList, friendIdList: $friendIdList)';
+    return 'UserData(uid: $uid, name: $name, imageUrl: $imageUrl)';
   }
 
   @override
@@ -181,10 +130,7 @@ class _$_UserData implements _UserData {
             other is _$_UserData &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList) &&
-            const DeepCollectionEquality()
-                .equals(other._friendIdList, _friendIdList));
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
   @override
@@ -192,9 +138,7 @@ class _$_UserData implements _UserData {
       runtimeType,
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(_taskList),
-      const DeepCollectionEquality().hash(_friendIdList));
+      const DeepCollectionEquality().hash(imageUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -206,9 +150,7 @@ abstract class _UserData implements UserData {
   const factory _UserData(
       {required final String uid,
       required final String name,
-      required final String imageUrl,
-      required final List<Task> taskList,
-      required final List<String> friendIdList}) = _$_UserData;
+      required final String imageUrl}) = _$_UserData;
 
   @override
   String get uid;
@@ -216,10 +158,6 @@ abstract class _UserData implements UserData {
   String get name;
   @override
   String get imageUrl;
-  @override
-  List<Task> get taskList;
-  @override
-  List<String> get friendIdList;
   @override
   @JsonKey(ignore: true)
   _$$_UserDataCopyWith<_$_UserData> get copyWith =>

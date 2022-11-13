@@ -25,76 +25,91 @@ class HomeScreen extends HookConsumerWidget {
 
     final friendTaskNames = ref.watch(friendtaskNameProvider);
 
-    return Center(
-        child: friendTaskNames.when(
-            data: ((taskNames) => Scaffold(
-                  appBar: AppBar(
-                    title: const Text('ホーム画面'),
-                    actions: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.person_add),
-                        onPressed: () {
-                          AutoRouter.of(context).push(const AddUserRoute());
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.logout),
-                        onPressed: () {
-                          googleProvider.logout(() {
-                            AutoRouter.of(context).push(const LoginRoute());
-                          });
-                        },
-                      ),
-                      const SizedBox(width: 16),
-                    ],
-                  ),
-                  body: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: taskNames.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              DateFormat outputFormat =
-                                  DateFormat('yyyy/MM/dd HH:mm');
-                              String deadline = outputFormat
-                                  .format(taskNames[index].deadline);
-                              return ListTile(
-                                title: Text(taskNames[index].taskName),
-                                subtitle: Text("$deadline まで"),
-                                onTap: () {
-                                  AutoRouter.of(context).push(
-                                      DetailRoute(task: taskNames[index]));
-                                },
-                                trailing: ElevatedButton(
-                                  onPressed: () {
-                                    AutoRouter.of(context)
-                                        .push(const GohobiRoute());
-                                  },
-                                  child: const Text("ごほうびをあげる"),
-                                ),
-                              );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ホーム画面'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.person_add),
+            onPressed: () {
+              AutoRouter.of(context).push(const AddUserRoute());
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              googleProvider.logout(() {
+                AutoRouter.of(context).push(const LoginRoute());
+              });
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
+      ),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          friendTaskNames.when(
+            data: ((taskNames) => Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () => ref
+                        .read(friendtaskNameProvider.notifier)
+                        .fetchTaskList(),
+                    child: ListView.builder(
+                      itemCount: taskNames.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        DateFormat outputFormat =
+                            DateFormat('yyyy/MM/dd HH:mm');
+                        String deadline =
+                            outputFormat.format(taskNames[index].deadline);
+                        return ListTile(
+                          title: Text(taskNames[index].taskName),
+                          subtitle: Text("$deadline まで"),
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(DetailRoute(task: taskNames[index]));
+                          },
+                          trailing: ElevatedButton(
+                            onPressed: () {
+                              AutoRouter.of(context).push(const GohobiRoute());
                             },
+                            child: const Text("ごほうびをあげる"),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                AutoRouter.of(context)
-                                    .push(const MyTaskRoute());
-                              },
-                              child: const Text("自分のタスク"),
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 )),
-            error: (error, _) => Text(error.toString()),
-            loading: () => const CircularProgressIndicator()));
+            error: (error, _) => Column(
+              children: [
+                const Text(
+                  "友達のタスクを取得できませんでした。\n友達を追加するか友達にタスクを追加してもらってください。",
+                  textAlign: TextAlign.center,
+                ),
+                ElevatedButton(
+                    onPressed: (() => ref
+                        .read(friendtaskNameProvider.notifier)
+                        .fetchTaskList()),
+                    child: const Text("再読み込み"))
+              ],
+            ),
+            loading: () => const CircularProgressIndicator(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ElevatedButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const MyTaskRoute());
+                },
+                child: const Text("自分のタスク"),
+              ),
+            ),
+          ),
+        ],
+      )),
+    );
   }
 }

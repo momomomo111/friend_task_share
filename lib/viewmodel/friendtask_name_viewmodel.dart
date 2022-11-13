@@ -14,7 +14,7 @@ class FriendTaskNameViewModel extends StateNotifier<AsyncValue<List<Task>>> {
   final UserDataViewModel _userDataViewModel;
 
   Future<void> fetchTaskList() async {
-    final uid = _userDataViewModel.state.value!.uid;
+    final uid = _userDataViewModel.state.uid;
     await _taskRepository.fetchFriendTaskList(uid).then((result) {
       result.when(success: ((value) {
         state = AsyncValue.data(value);

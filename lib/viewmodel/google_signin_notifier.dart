@@ -27,6 +27,7 @@ class GooglSignInNotifier extends ChangeNotifier {
       notifyListeners();
       _read.initBaseData(auth.currentUser!.uid, auth.currentUser!.displayName!,
           auth.currentUser!.photoURL!);
+      _read.createUserData();
       onSuccess();
     } catch (e) {
       // ignore: avoid_print
