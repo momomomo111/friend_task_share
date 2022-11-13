@@ -13,7 +13,6 @@ class DetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskNames = ref.watch(friendtaskNameProvider);
     DateFormat outputFormat = DateFormat('yyyy/MM/dd HH:mm');
     String deadline = outputFormat.format(task.deadline);
     return Scaffold(
@@ -25,8 +24,7 @@ class DetailScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             const SizedBox(height: 40),
-            Text(taskNames[0].taskName,
-                style: Theme.of(context).textTheme.headline4),
+            Text(task.taskName, style: Theme.of(context).textTheme.headline4),
             const SizedBox(height: 20),
             Text('$deadline まで', style: Theme.of(context).textTheme.subtitle1),
             const SizedBox(height: 20),

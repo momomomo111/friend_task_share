@@ -15,14 +15,4 @@ class UserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
         taskList: [],
         friendIdList: []));
   }
-
-  void fetchFriendUserIdList() async {
-    await _taskRepository.fetchFriendUserId(state.value!.uid).then((result) {
-      result.when(success: ((value) {
-        state = AsyncValue.data(state.value!.copyWith(friendIdList: value));
-      }), failure: (error) {
-        state = AsyncValue.error(error);
-      });
-    });
-  }
 }

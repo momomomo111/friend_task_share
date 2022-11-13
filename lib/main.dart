@@ -19,8 +19,11 @@ final taskRepositoryProvider = Provider.autoDispose(
     (ref) => TaskRepository(ref.read(fireStoreApiProvider)));
 
 final friendtaskNameProvider =
-    StateNotifierProvider<FriendTaskNameViewModel, List<Task>>(
-        (_) => FriendTaskNameViewModel());
+    StateNotifierProvider<FriendTaskNameViewModel, AsyncValue<List<Task>>>(
+        (ref) => FriendTaskNameViewModel(
+              ref.read(taskRepositoryProvider),
+              ref.read(userDataProvider.notifier),
+            ));
 
 final mytaskNameProvider =
     StateNotifierProvider<MyTaskNameViewModel, AsyncValue<List<Task>>>(

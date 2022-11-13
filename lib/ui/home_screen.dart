@@ -11,91 +11,90 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final googleProvider = ref.watch(googlSignInProvider);
-    final taskNames = ref.watch(friendtaskNameProvider);
     final userProvider = ref.read(userDataProvider.notifier);
-
-    bool loading = true;
 
     if (googleProvider.auth.currentUser == null) {
       AutoRouter.of(context).push(const LoginRoute());
     } else {
-      loading = false;
       userProvider.initBaseData(
         googleProvider.auth.currentUser!.uid,
         googleProvider.auth.currentUser!.displayName!,
         googleProvider.auth.currentUser!.photoURL!,
       );
-      userProvider.fetchFriendUserIdList();
     }
 
-    return !loading
-        ? Scaffold(
-            appBar: AppBar(
-              title: const Text('ホーム画面'),
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.person_add),
-                  onPressed: () {
-                    AutoRouter.of(context).push(const AddUserRoute());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.logout),
-                  onPressed: () {
-                    googleProvider.logout(() {
-                      AutoRouter.of(context).push(const LoginRoute());
-                    });
-                  },
-                ),
-                const SizedBox(width: 16),
-              ],
-            ),
-            body: Center(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: taskNames.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        DateFormat outputFormat =
-                            DateFormat('yyyy/MM/dd HH:mm');
-                        String deadline =
-                            outputFormat.format(taskNames[index].deadline);
-                        return ListTile(
-                          title: Text(taskNames[index].taskName),
-                          subtitle: Text("$deadline まで"),
-                          onTap: () {
-                            AutoRouter.of(context)
-                                .push(DetailRoute(task: taskNames[index]));
-                          },
-                          trailing: ElevatedButton(
-                            onPressed: () {
-                              AutoRouter.of(context).push(const GohobiRoute());
-                            },
-                            child: const Text("ごほうびをあげる"),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(32.0),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: ElevatedButton(
+    final friendTaskNames = ref.watch(friendtaskNameProvider);
+
+    return Center(
+        child: friendTaskNames.when(
+            data: ((taskNames) => Scaffold(
+                  appBar: AppBar(
+                    title: const Text('ホーム画面'),
+                    actions: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.person_add),
                         onPressed: () {
-                          AutoRouter.of(context).push(const MyTaskRoute());
+                          AutoRouter.of(context).push(const AddUserRoute());
                         },
-                        child: const Text("自分のタスク"),
                       ),
+                      IconButton(
+                        icon: const Icon(Icons.logout),
+                        onPressed: () {
+                          googleProvider.logout(() {
+                            AutoRouter.of(context).push(const LoginRoute());
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 16),
+                    ],
+                  ),
+                  body: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: taskNames.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              DateFormat outputFormat =
+                                  DateFormat('yyyy/MM/dd HH:mm');
+                              String deadline = outputFormat
+                                  .format(taskNames[index].deadline);
+                              return ListTile(
+                                title: Text(taskNames[index].taskName),
+                                subtitle: Text("$deadline まで"),
+                                onTap: () {
+                                  AutoRouter.of(context).push(
+                                      DetailRoute(task: taskNames[index]));
+                                },
+                                trailing: ElevatedButton(
+                                  onPressed: () {
+                                    AutoRouter.of(context)
+                                        .push(const GohobiRoute());
+                                  },
+                                  child: const Text("ごほうびをあげる"),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(32.0),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                AutoRouter.of(context)
+                                    .push(const MyTaskRoute());
+                              },
+                              child: const Text("自分のタスク"),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          )
-        : const Center(
-            child: CircularProgressIndicator(),
-          );
+                )),
+            error: (error, _) => Text(error.toString()),
+            loading: () => const CircularProgressIndicator()));
   }
 }
