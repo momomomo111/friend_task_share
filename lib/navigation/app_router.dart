@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:friend_task_share/ui/friendtask_screen.dart';
+import '../ui/friendtask_screen.dart';
 
 import '../ui/add_task_screen.dart';
 import '../ui/add_user_screen.dart';

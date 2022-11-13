@@ -1,5 +1,5 @@
-import 'package:friend_task_share/api/firestore_api.dart';
-import 'package:friend_task_share/response/result.dart';
+import '../api/firestore_api.dart';
+import '../response/result.dart';
 
 import '../domain/task.dart';
 

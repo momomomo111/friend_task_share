@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:friend_task_share/viewmodel/user_data_viewmodel.dart';
+import 'user_data_viewmodel.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GooglSignInNotifier extends ChangeNotifier {

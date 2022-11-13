@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/api/firestore_api.dart';
-import 'package:friend_task_share/repository/task_repository.dart';
-import 'package:friend_task_share/repository/user_repository.dart';
+import 'api/firestore_api.dart';
+import 'repository/task_repository.dart';
+import 'repository/user_repository.dart';
 import 'domain/user_data.dart';
 import 'viewmodel/user_data_viewmodel.dart';
 import 'domain/task.dart';
