@@ -53,4 +53,21 @@ class FirestoreApi {
       "friendUserId": FieldValue.arrayUnion([friendUid])
     });
   }
+
+  Future<String> addTask(
+      String taskName, List<String> smallTaskList, DateTime deadline) async {
+    var uid = await tasks.add({
+      "taskName": taskName,
+      "smallTaskList": smallTaskList,
+      "deadline": deadline,
+      "gohobiListId": []
+    });
+    return uid.id;
+  }
+
+  Future<void> addTaskId(String uid, String taskId) async {
+    await users.doc(uid).update({
+      "taskList": FieldValue.arrayUnion([taskId])
+    });
+  }
 }

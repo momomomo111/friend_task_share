@@ -22,4 +22,9 @@ class MyTaskNameViewModel extends StateNotifier<AsyncValue<List<Task>>> {
       });
     });
   }
+
+  Future<void> submitTask(String uid, String taskName,
+      List<String> smallTaskList, DateTime deadline) async {
+    await _taskRepository.addTask(uid, taskName, smallTaskList, deadline);
+  }
 }

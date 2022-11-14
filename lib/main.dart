@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/repository/friend_repository.dart';
 import 'package:friend_task_share/viewmodel/friend_user_data_viewmodel.dart';
+import 'package:friend_task_share/viewmodel/submit_task_viewmodel.dart';
 import 'api/firestore_api.dart';
 import 'repository/task_repository.dart';
 import 'repository/user_repository.dart';
@@ -50,6 +51,32 @@ final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
 final friendUserDataProvider = StateNotifierProvider.autoDispose<
         FriendUserDataViewModel, AsyncValue<UserData>>(
     (ref) => FriendUserDataViewModel(ref.read(friendRepositoryProvider)));
+
+final submitTaskProvider =
+    StateNotifierProvider.autoDispose<SubmitTaskViewModel, Task>((ref) =>
+        SubmitTaskViewModel(
+            ref.read(taskRepositoryProvider),
+            ref.read(userDataProvider.notifier),
+            ref.watch(taskNameControllerStateProvider),
+            ref.watch(smallTaskNameController1StateProvider),
+            ref.watch(smallTaskNameController2StateProvider),
+            ref.watch(smallTaskNameController3StateProvider)));
+
+final taskNameControllerStateProvider = StateProvider.autoDispose((ref) {
+  return TextEditingController(text: '');
+});
+
+final smallTaskNameController1StateProvider = StateProvider.autoDispose((ref) {
+  return TextEditingController(text: '');
+});
+
+final smallTaskNameController2StateProvider = StateProvider.autoDispose((ref) {
+  return TextEditingController(text: '');
+});
+
+final smallTaskNameController3StateProvider = StateProvider.autoDispose((ref) {
+  return TextEditingController(text: '');
+});
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

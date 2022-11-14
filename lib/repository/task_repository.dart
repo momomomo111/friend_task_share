@@ -78,4 +78,10 @@ class TaskRepository {
     }
     return Result<List<Task>>.success(taskList);
   }
+
+  Future<void> addTask(String uid, String taskName, List<String> smallTaskList,
+      DateTime deadline) async {
+    var taskId = await _client.addTask(taskName, smallTaskList, deadline);
+    await _client.addTaskId(uid, taskId);
+  }
 }
