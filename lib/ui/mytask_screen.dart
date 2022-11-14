@@ -37,7 +37,11 @@ class MyTaskScreen extends HookConsumerWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   for (var i = 0;
-                                      i < taskNames[index].gohobiListId.length;
+                                      i <
+                                              taskNames[index]
+                                                  .gohobiListId
+                                                  .length &&
+                                          i < 3;
                                       i++)
                                     const Icon(
                                       Icons.account_circle,
