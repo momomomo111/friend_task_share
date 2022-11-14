@@ -15,4 +15,9 @@ class FriendRepository {
         .then((friendUserData) => Result<UserData>.success(friendUserData))
         .catchError((error) => Result<UserData>.failure(error));
   }
+
+  Future<void> addFriendUser(String uid, String friendUid) async {
+    await _client.addFriendUser(uid, friendUid);
+    await _client.addFriendUser(friendUid, uid);
+  }
 }

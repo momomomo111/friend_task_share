@@ -22,7 +22,7 @@ class AddUserScreen extends HookConsumerWidget {
       } else {
         userVisibility.value = true;
         ref.read(friendUserDataProvider.notifier).searchUserData(
-              textController.value.text,
+              textController.text,
             );
       }
     });
@@ -70,6 +70,10 @@ class AddUserScreen extends HookConsumerWidget {
                               child: const Text('追加'),
                               onPressed: () {
                                 userVisibility.value = false;
+                                ref
+                                    .read(friendUserDataProvider.notifier)
+                                    .addFriendUser(
+                                        myUserProvider.uid, friendUser.uid);
                               },
                             ),
                           ],

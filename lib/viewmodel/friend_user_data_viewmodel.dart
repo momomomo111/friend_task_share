@@ -18,4 +18,8 @@ class FriendUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
           failure: (error) => state = AsyncValue.error(error));
     });
   }
+
+  Future<void> addFriendUser(String myUserId, String friendUserId) async {
+    await _friendRepository.addFriendUser(myUserId, friendUserId);
+  }
 }

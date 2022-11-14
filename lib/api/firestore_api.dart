@@ -52,4 +52,10 @@ class FirestoreApi {
       return UserData(uid: uid, name: "unknown", imageUrl: "");
     }
   }
+
+  Future<void> addFriendUser(String uid, String friendUid) async {
+    await users.doc(uid).update({
+      "friendUserId": FieldValue.arrayUnion([friendUid])
+    });
+  }
 }
