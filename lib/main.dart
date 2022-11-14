@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:friend_task_share/repository/friend_repository.dart';
+import 'package:friend_task_share/repository/gohobi_repository.dart';
 import 'package:friend_task_share/viewmodel/friend_user_data_viewmodel.dart';
+import 'package:friend_task_share/viewmodel/submit_gohobi_viewmodel.dart';
 import 'package:friend_task_share/viewmodel/submit_task_viewmodel.dart';
 import 'api/firestore_api.dart';
+import 'domain/gohobi.dart';
 import 'repository/task_repository.dart';
 import 'repository/user_repository.dart';
 import 'domain/user_data.dart';
@@ -17,8 +20,10 @@ import 'viewmodel/friendtask_name_viewmodel.dart';
 import 'viewmodel/google_signin_notifier.dart';
 import 'viewmodel/mytask_name_viewmodel.dart';
 
+// Api
 final fireStoreApiProvider = Provider.autoDispose((ref) => FirestoreApi());
 
+// Repository
 final taskRepositoryProvider = Provider.autoDispose(
     (ref) => TaskRepository(ref.read(fireStoreApiProvider)));
 
@@ -28,6 +33,10 @@ final userRepositoryProvider = Provider.autoDispose(
 final friendRepositoryProvider = Provider.autoDispose(
     (ref) => FriendRepository(ref.read(fireStoreApiProvider)));
 
+final gohobiRepositoryProvider = Provider.autoDispose(
+    (ref) => GohobiRepository(ref.read(fireStoreApiProvider)));
+
+// ViewModel
 final friendtaskNameProvider = StateNotifierProvider.autoDispose<
         FriendTaskNameViewModel, AsyncValue<List<Task>>>(
     (ref) => FriendTaskNameViewModel(
@@ -61,6 +70,12 @@ final submitTaskProvider =
             ref.watch(smallTaskNameController1StateProvider),
             ref.watch(smallTaskNameController2StateProvider),
             ref.watch(smallTaskNameController3StateProvider)));
+
+final submitGohobiProvider =
+    StateNotifierProvider.autoDispose<SubmitGohobiViewModel, Gohobi>(
+        (ref) => SubmitGohobiViewModel(ref.read(gohobiRepositoryProvider)));
+
+// TextEditingControllers
 
 final taskNameControllerStateProvider = StateProvider.autoDispose((ref) {
   return TextEditingController(text: '');

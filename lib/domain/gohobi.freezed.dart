@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Gohobi {
-  String get uid => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  String get fromUserName => throw _privateConstructorUsedError;
+  String get fromUserId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GohobiCopyWith<Gohobi> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +27,7 @@ mixin _$Gohobi {
 abstract class $GohobiCopyWith<$Res> {
   factory $GohobiCopyWith(Gohobi value, $Res Function(Gohobi) then) =
       _$GohobiCopyWithImpl<$Res>;
-  $Res call({String uid, String message, String fromUserName});
+  $Res call({String message, String fromUserId});
 }
 
 /// @nodoc
@@ -41,22 +40,17 @@ class _$GohobiCopyWithImpl<$Res> implements $GohobiCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? uid = freezed,
     Object? message = freezed,
-    Object? fromUserName = freezed,
+    Object? fromUserId = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserName: fromUserName == freezed
-          ? _value.fromUserName
-          : fromUserName // ignore: cast_nullable_to_non_nullable
+      fromUserId: fromUserId == freezed
+          ? _value.fromUserId
+          : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -67,7 +61,7 @@ abstract class _$$_GohobiCopyWith<$Res> implements $GohobiCopyWith<$Res> {
   factory _$$_GohobiCopyWith(_$_Gohobi value, $Res Function(_$_Gohobi) then) =
       __$$_GohobiCopyWithImpl<$Res>;
   @override
-  $Res call({String uid, String message, String fromUserName});
+  $Res call({String message, String fromUserId});
 }
 
 /// @nodoc
@@ -81,22 +75,17 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? uid = freezed,
     Object? message = freezed,
-    Object? fromUserName = freezed,
+    Object? fromUserId = freezed,
   }) {
     return _then(_$_Gohobi(
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserName: fromUserName == freezed
-          ? _value.fromUserName
-          : fromUserName // ignore: cast_nullable_to_non_nullable
+      fromUserId: fromUserId == freezed
+          ? _value.fromUserId
+          : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -105,19 +94,16 @@ class __$$_GohobiCopyWithImpl<$Res> extends _$GohobiCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Gohobi implements _Gohobi {
-  const _$_Gohobi(
-      {required this.uid, required this.message, required this.fromUserName});
+  const _$_Gohobi({required this.message, required this.fromUserId});
 
-  @override
-  final String uid;
   @override
   final String message;
   @override
-  final String fromUserName;
+  final String fromUserId;
 
   @override
   String toString() {
-    return 'Gohobi(uid: $uid, message: $message, fromUserName: $fromUserName)';
+    return 'Gohobi(message: $message, fromUserId: $fromUserId)';
   }
 
   @override
@@ -125,18 +111,16 @@ class _$_Gohobi implements _Gohobi {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Gohobi &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
-                .equals(other.fromUserName, fromUserName));
+                .equals(other.fromUserId, fromUserId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(fromUserName));
+      const DeepCollectionEquality().hash(fromUserId));
 
   @JsonKey(ignore: true)
   @override
@@ -146,16 +130,13 @@ class _$_Gohobi implements _Gohobi {
 
 abstract class _Gohobi implements Gohobi {
   const factory _Gohobi(
-      {required final String uid,
-      required final String message,
-      required final String fromUserName}) = _$_Gohobi;
+      {required final String message,
+      required final String fromUserId}) = _$_Gohobi;
 
-  @override
-  String get uid;
   @override
   String get message;
   @override
-  String get fromUserName;
+  String get fromUserId;
   @override
   @JsonKey(ignore: true)
   _$$_GohobiCopyWith<_$_Gohobi> get copyWith =>

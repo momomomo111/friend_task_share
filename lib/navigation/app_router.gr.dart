@@ -52,8 +52,10 @@ class AppRouter extends _i9.RootStackRouter {
           child: _i5.DetailScreen(key: args.key, task: args.task));
     },
     GohobiRoute.name: (routeData) {
+      final args = routeData.argsAs<GohobiRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.GohobiScreen());
+          routeData: routeData,
+          child: _i6.GohobiScreen(key: args.key, taskId: args.taskId));
     },
     AddTaskRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
@@ -137,10 +139,26 @@ class DetailRouteArgs {
 
 /// generated route for
 /// [_i6.GohobiScreen]
-class GohobiRoute extends _i9.PageRouteInfo<void> {
-  const GohobiRoute() : super(GohobiRoute.name, path: '/gohobi-screen');
+class GohobiRoute extends _i9.PageRouteInfo<GohobiRouteArgs> {
+  GohobiRoute({_i10.Key? key, required String taskId})
+      : super(GohobiRoute.name,
+            path: '/gohobi-screen',
+            args: GohobiRouteArgs(key: key, taskId: taskId));
 
   static const String name = 'GohobiRoute';
+}
+
+class GohobiRouteArgs {
+  const GohobiRouteArgs({this.key, required this.taskId});
+
+  final _i10.Key? key;
+
+  final String taskId;
+
+  @override
+  String toString() {
+    return 'GohobiRouteArgs{key: $key, taskId: $taskId}';
+  }
 }
 
 /// generated route for

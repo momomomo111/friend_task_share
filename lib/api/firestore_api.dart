@@ -65,6 +65,18 @@ class FirestoreApi {
     return uid.id;
   }
 
+  Future<String> addGohobi(String fromUserId, String message) async {
+    var gohobiId =
+        await gohobis.add({"fromUserId": fromUserId, "message": message});
+    return gohobiId.id;
+  }
+
+  Future<void> addGohobiListId(String taskId, String gohobiId) async {
+    await tasks.doc(taskId).update({
+      "gohobiListId": FieldValue.arrayUnion([gohobiId])
+    });
+  }
+
   Future<void> addTaskId(String uid, String taskId) async {
     await users.doc(uid).update({
       "taskList": FieldValue.arrayUnion([taskId])

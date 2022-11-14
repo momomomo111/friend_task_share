@@ -59,7 +59,8 @@ class FriendTaskScren extends HookConsumerWidget {
                           },
                           trailing: ElevatedButton(
                             onPressed: () {
-                              AutoRouter.of(context).push(const GohobiRoute());
+                              AutoRouter.of(context).push(
+                                  GohobiRoute(taskId: taskNames[index].uid));
                             },
                             child: const Text("ごほうびをあげる"),
                           ),

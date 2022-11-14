@@ -65,7 +65,7 @@ class DetailScreen extends HookConsumerWidget {
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(const GohobiRoute());
+                    AutoRouter.of(context).push(GohobiRoute(taskId: task.uid));
                   },
                   child: const Text('ごほうびをあげる'),
                 ),

@@ -39,10 +39,6 @@ class SubmitTaskViewModel extends StateNotifier<Task> {
       _smallTaskController3.text
     ];
     final deadline = state.deadline;
-    print("uid: $uid");
-    print("taskName: $taskName");
-    print("smallTaskList: $smallTaskList");
-    print("deadline: $deadline");
     await _taskRepository.addTask(uid, taskName, smallTaskList, deadline);
   }
 }
