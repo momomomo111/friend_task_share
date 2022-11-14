@@ -65,28 +65,30 @@ class AddTaskScreen extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (_) {
-                    return AlertDialog(
-                      title: const Text("以下の内容で保存しますか？"),
-                      content: Text(taskNameController.text),
-                      actions: [
-                        OutlinedButton(
-                          child: const Text("キャンセル"),
-                          onPressed: () => AutoRouter.of(context).pop(),
-                        ),
-                        OutlinedButton(
-                          child: const Text("OK"),
-                          onPressed: () {
-                            submitProvider.submitTask();
-                            AutoRouter.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
+                if (taskNameController.text.isNotEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: const Text("以下の内容で保存しますか？"),
+                        content: Text(taskNameController.text),
+                        actions: [
+                          OutlinedButton(
+                            child: const Text("キャンセル"),
+                            onPressed: () => AutoRouter.of(context).pop(),
+                          ),
+                          OutlinedButton(
+                            child: const Text("OK"),
+                            onPressed: () {
+                              submitProvider.submitTask();
+                              AutoRouter.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
               child: const Text('入力完了'),
             ),

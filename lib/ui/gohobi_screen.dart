@@ -16,7 +16,7 @@ class GohobiScreen extends HookConsumerWidget {
     final myUserProvider = ref.watch(userDataProvider);
 
     focusNode.addListener(() async {
-      if (!focusNode.hasFocus) {
+      if (!focusNode.hasFocus && gohobiMessageController.text.isNotEmpty) {
         ref
             .read(submitGohobiProvider.notifier)
             .createGohobi(myUserProvider.uid, gohobiMessageController.text);

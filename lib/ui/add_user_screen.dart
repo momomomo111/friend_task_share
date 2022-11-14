@@ -16,13 +16,13 @@ class AddUserScreen extends HookConsumerWidget {
     final friendUserProvider = ref.watch(friendUserDataProvider);
 
     focusNode.addListener(() {
-      if (focusNode.hasFocus) {
-        userVisibility.value = false;
-      } else {
+      if (!focusNode.hasFocus && searchIdController.text.isNotEmpty) {
         ref.read(friendUserDataProvider.notifier).searchUserData(
               searchIdController.text,
             );
         userVisibility.value = true;
+      } else {
+        userVisibility.value = false;
       }
     });
 
