@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:friend_task_share/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
+
+import '../util/date_util.dart';
 
 class AddTaskScreen extends HookConsumerWidget {
   const AddTaskScreen({Key? key}) : super(key: key);
@@ -27,11 +30,11 @@ class AddTaskScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text('タスク名の入力', style: Theme.of(context).textTheme.headline4),
+            Text('タスク名の入力', style: Theme.of(context).textTheme.headline5),
             TextField(
               controller: taskNameController,
             ),
-            Text('小タスク名の入力', style: Theme.of(context).textTheme.headline4),
+            Text('小タスク名の入力', style: Theme.of(context).textTheme.headline5),
             TextField(
               controller: smallTaskNameController1,
             ),
@@ -41,12 +44,24 @@ class AddTaskScreen extends HookConsumerWidget {
             TextField(
               controller: smallTaskNameController3,
             ),
-            ElevatedButton(
-              onPressed: () {
-                _inputDeadlineController(context,
-                    (deadline) => {submitProvider.setDeadline(deadline)});
-              },
-              child: const Text('締切を入力してください'),
+            Text('締切', style: Theme.of(context).textTheme.headline5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(DateUtil.formatDeadline(submitWatchProvider.deadline),
+                    style: Theme.of(context).textTheme.headline6),
+                ElevatedButton(
+                  onPressed: () {
+                    _deadlineController(context,
+                        (deadline) => {submitProvider.setDeadline(deadline)});
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(60, 60),
+                    shape: const CircleBorder(),
+                  ),
+                  child: const Icon(Icons.calendar_today),
+                ),
+              ],
             ),
             ElevatedButton(
               onPressed: () {
@@ -82,13 +97,26 @@ class AddTaskScreen extends HookConsumerWidget {
   }
 }
 
-Future<void> _inputDeadlineController(
-    BuildContext context, Function submit) async {
-  final DateTime? date = await showDatePicker(
+Future<void> _deadlineController(BuildContext context, Function submit) async {
+  final DateTime? day = await showDatePicker(
     context: context,
     initialDate: DateTime.now(),
     firstDate: DateTime.now().subtract(const Duration(days: 365)),
     lastDate: DateTime.now().add(const Duration(days: 365)),
   );
-  submit(date ?? DateTime.now());
+
+  final TimeOfDay? time = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.fromDateTime(day ?? DateTime.now()),
+  );
+
+  final DateTime date = DateTime(
+    day?.year ?? DateTime.now().year,
+    day?.month ?? DateTime.now().month,
+    day?.day ?? DateTime.now().day,
+    time?.hour ?? DateTime.now().hour,
+    time?.minute ?? DateTime.now().minute,
+  );
+
+  submit(date);
 }

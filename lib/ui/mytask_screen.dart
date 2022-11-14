@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../main.dart';
 import '../navigation/app_router.gr.dart';
+import '../util/date_util.dart';
 
 class MyTaskScreen extends HookConsumerWidget {
   const MyTaskScreen({Key? key}) : super(key: key);
@@ -28,13 +29,11 @@ class MyTaskScreen extends HookConsumerWidget {
                         child: ListView.builder(
                           itemCount: taskNames.length,
                           itemBuilder: (BuildContext context, int index) {
-                            DateFormat outputFormat =
-                                DateFormat('yyyy/MM/dd HH:mm');
-                            String deadline =
-                                outputFormat.format(taskNames[index].deadline);
+                            final deadline = DateUtil.formatDeadline(
+                                taskNames[index].deadline);
                             return ListTile(
                               title: Text(taskNames[index].taskName),
-                              subtitle: Text("$deadline まで"),
+                              subtitle: Text(deadline),
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[

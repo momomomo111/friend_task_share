@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:friend_task_share/util/date_util.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -47,13 +48,11 @@ class FriendTaskScren extends HookConsumerWidget {
                     child: ListView.builder(
                       itemCount: taskNames.length,
                       itemBuilder: (BuildContext context, int index) {
-                        DateFormat outputFormat =
-                            DateFormat('yyyy/MM/dd HH:mm');
-                        String deadline =
-                            outputFormat.format(taskNames[index].deadline);
+                        final deadline =
+                            DateUtil.formatDeadline(taskNames[index].deadline);
                         return ListTile(
                           title: Text(taskNames[index].taskName),
-                          subtitle: Text("$deadline まで"),
+                          subtitle: Text(deadline),
                           onTap: () {
                             AutoRouter.of(context)
                                 .push(DetailRoute(task: taskNames[index]));
