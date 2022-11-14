@@ -8,14 +8,12 @@ class FriendUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
   final FriendRepository _friendRepository;
 
   Future<void> searchUserData(String userId) async {
+    state = const AsyncLoading();
     await _friendRepository.fetchUserData(userId).then((result) {
       result.when(
-          success: ((value) {
-            state = value.name != "unknown"
-                ? AsyncValue.data(value)
-                : const AsyncValue.error("ユーザーが見つかりませんでした");
-          }),
-          failure: (error) => state = AsyncValue.error(error));
+          success: ((value) => state = AsyncValue.data(value)),
+          failure: (error) =>
+              state = const AsyncValue.error("ユーザーが見つかりませんでした"));
     });
   }
 

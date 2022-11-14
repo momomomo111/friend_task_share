@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +9,7 @@ class AddUserScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textController = TextEditingController();
+    final searchIdController = useTextEditingController();
     final userVisibility = useState(false);
     final focusNode = useFocusNode();
     final myUserProvider = ref.watch(userDataProvider);
@@ -20,10 +19,10 @@ class AddUserScreen extends HookConsumerWidget {
       if (focusNode.hasFocus) {
         userVisibility.value = false;
       } else {
-        userVisibility.value = true;
         ref.read(friendUserDataProvider.notifier).searchUserData(
-              textController.text,
+              searchIdController.text,
             );
+        userVisibility.value = true;
       }
     });
 
@@ -47,11 +46,9 @@ class AddUserScreen extends HookConsumerWidget {
                 style: Theme.of(context).textTheme.headline6),
             const SizedBox(height: 20),
             TextField(
-              controller: textController,
+              controller: searchIdController,
               focusNode: focusNode,
-              onSubmitted: (text) {
-                userVisibility.value = true;
-              },
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
             userVisibility.value

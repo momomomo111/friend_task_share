@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import '../domain/user_data.dart';
 import '../response/result.dart';
 

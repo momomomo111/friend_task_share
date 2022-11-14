@@ -40,17 +40,12 @@ class FirestoreApi {
   }
 
   Future<UserData> fetchUserData(String uid) async {
-    try {
-      var userData = await users.doc(uid).get().then((value) {
-        return UserData(
-            uid: value.id,
-            name: (value.data() as Map<String, dynamic>)["name"],
-            imageUrl: (value.data() as Map<String, dynamic>)["imageUrl"]);
-      });
-      return userData;
-    } catch (error) {
-      return UserData(uid: uid, name: "unknown", imageUrl: "");
-    }
+    return await users.doc(uid).get().then((value) {
+      return UserData(
+          uid: value.id,
+          name: (value.data() as Map<String, dynamic>)["name"],
+          imageUrl: (value.data() as Map<String, dynamic>)["imageUrl"]);
+    });
   }
 
   Future<void> addFriendUser(String uid, String friendUid) async {
