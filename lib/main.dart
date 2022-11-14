@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/repository/friend_repository.dart';
-import 'package:friend_task_share/repository/gohobi_repository.dart';
-import 'package:friend_task_share/viewmodel/friend_user_data_viewmodel.dart';
-import 'package:friend_task_share/viewmodel/submit_gohobi_viewmodel.dart';
-import 'package:friend_task_share/viewmodel/submit_task_viewmodel.dart';
+import 'repository/friend_repository.dart';
+import 'repository/gohobi_repository.dart';
+import 'viewmodel/friend_user_data_viewmodel.dart';
+import 'viewmodel/submit_gohobi_viewmodel.dart';
+import 'viewmodel/submit_task_viewmodel.dart';
 import 'api/firestore_api.dart';
 import 'domain/gohobi.dart';
 import 'repository/task_repository.dart';

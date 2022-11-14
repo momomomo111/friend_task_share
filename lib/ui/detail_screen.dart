@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../domain/task.dart';
-import '../main.dart';
 import '../navigation/app_router.gr.dart';
 
 class DetailScreen extends HookConsumerWidget {

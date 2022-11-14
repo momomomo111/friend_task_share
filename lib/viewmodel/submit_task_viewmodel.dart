@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/viewmodel/user_data_viewmodel.dart';
+import 'user_data_viewmodel.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/task.dart';

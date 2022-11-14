@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:friend_task_share/util/date_util.dart';
+import '../util/date_util.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../main.dart';
 import '../navigation/app_router.gr.dart';
