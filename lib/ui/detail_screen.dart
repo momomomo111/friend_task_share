@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -138,7 +140,10 @@ class DetailScreen extends HookConsumerWidget {
                                   showDialog(
                                     context: context,
                                     builder: (_) => AlertDialog(
-                                      title: const Text("ごほうびメッセージ"),
+                                      title: Text("ごほうびメッセージ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5),
                                       content: gohobiProvider.when(
                                         data: ((gohobi) => SizedBox(
                                               width: 220,
@@ -146,7 +151,40 @@ class DetailScreen extends HookConsumerWidget {
                                               child: ListView.builder(
                                                 itemCount: gohobi.length,
                                                 itemBuilder: ((_, index) =>
-                                                    Text(gohobi[index])),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border.all(
+                                                            width: 8.0,
+                                                            color: Colors
+                                                                    .primaries[
+                                                                Random().nextInt(
+                                                                    Colors
+                                                                        .primaries
+                                                                        .length)],
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(40),
+                                                        ),
+                                                        child: Text(
+                                                          gohobi[index],
+                                                          style: TextStyle(
+                                                              fontSize: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .headline6
+                                                                  ?.fontSize),
+                                                        ),
+                                                      ),
+                                                    )),
                                               ),
                                             )),
                                         error: ((error, stackTrace) =>

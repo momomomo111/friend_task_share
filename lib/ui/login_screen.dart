@@ -16,9 +16,27 @@ class LoginScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text("タイトル名",
-                style: Theme.of(context).textTheme.headline4,
-                textAlign: TextAlign.center),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: Theme.of(context).textTheme.headline5,
+                children: [
+                  const TextSpan(
+                    text: 'ごほうび',
+                  ),
+                  TextSpan(
+                    text: ' ToDo ',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize:
+                            Theme.of(context).textTheme.headline3?.fontSize),
+                  ),
+                  const TextSpan(
+                    text: 'アプリ',
+                  ),
+                ],
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

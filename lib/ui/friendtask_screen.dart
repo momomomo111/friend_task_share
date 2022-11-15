@@ -50,7 +50,8 @@ class FriendTaskScren extends HookConsumerWidget {
                         final deadline =
                             DateUtil.formatDeadline(taskNames[index].deadline);
                         return ListTile(
-                          title: Text(taskNames[index].taskName),
+                          title: Text(taskNames[index].taskName,
+                              style: Theme.of(context).textTheme.headline6),
                           subtitle: Text(deadline),
                           onTap: () {
                             AutoRouter.of(context).push(DetailRoute(
