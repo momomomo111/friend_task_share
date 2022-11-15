@@ -1,16 +1,9 @@
 # friend_task_share
 
-A new Flutter project.
+このアプリは友達とToDoタスクを共有することができます。<br>
+友達のToDoに「ごほうびメッセージ」を送ることができ、受け取った側はタスクが完了したら「ごほうびメッセージ」を閲覧することができます。
 
-## Getting Started
+This application allows you to share To-Do tasks with your friends.
+You can send "Reward Messages" to your friends' To-Do tasks, and the recipient can view the "Reward Messages" when the task is completed.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Powerd by 東北 Tech 道場
