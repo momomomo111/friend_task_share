@@ -16,7 +16,9 @@ class AddUserScreen extends HookConsumerWidget {
     final friendUserProvider = ref.watch(searchUserDataProvider);
 
     focusNode.addListener(() {
-      if (!focusNode.hasFocus && searchIdController.text.isNotEmpty) {
+      if (!focusNode.hasFocus &&
+          searchIdController.text.isNotEmpty &&
+          searchIdController.text != myUserProvider.uid) {
         ref.read(searchUserDataProvider.notifier).searchUserData(
               searchIdController.text,
             );
@@ -45,10 +47,28 @@ class AddUserScreen extends HookConsumerWidget {
             Text(myUserProvider.uid,
                 style: Theme.of(context).textTheme.headline6),
             const SizedBox(height: 20),
-            TextField(
-              controller: searchIdController,
-              focusNode: focusNode,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: TextFormField(
+                controller: searchIdController,
+                textAlign: TextAlign.center,
+                focusNode: focusNode,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "友達のユーザIDを入力してください",
+                  labelText: "友達のユーザID",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '友達のユーザIDが入力されていません';
+                  }
+                  if (value == myUserProvider.uid) {
+                    return '自分のユーザIDは入力できません';
+                  }
+                  return null;
+                },
+              ),
             ),
             const SizedBox(height: 40),
             userVisibility.value

@@ -33,9 +33,24 @@ class AddGohobiScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text('ごほうびメッセージの入力', style: Theme.of(context).textTheme.headline5),
-            TextField(
-              controller: gohobiMessageController,
-              focusNode: focusNode,
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: TextFormField(
+                controller: gohobiMessageController,
+                focusNode: focusNode,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "ごほうびメッセージを入力してください",
+                  labelText: "ごほうびメッセージ",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'ごほうびメッセージが入力されていません';
+                  }
+                  return null;
+                },
+              ),
             ),
             ElevatedButton(
               onPressed: () {

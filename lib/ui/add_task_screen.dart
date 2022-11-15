@@ -29,18 +29,62 @@ class AddTaskScreen extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text('タスク名の入力', style: Theme.of(context).textTheme.headline5),
-            TextField(
-              controller: taskNameController,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: TextFormField(
+                controller: taskNameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "タスク名を入力してください",
+                  labelText: "タスク名",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'タスク名が入力されていません';
+                  }
+                  return null;
+                },
+              ),
             ),
             Text('小タスク名の入力', style: Theme.of(context).textTheme.headline5),
-            TextField(
-              controller: smallTaskNameController1,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: TextFormField(
+                controller: smallTaskNameController1,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "小タスク名1を入力してください",
+                  labelText: "小タスク名1",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+              ),
             ),
-            TextField(
-              controller: smallTaskNameController2,
+            const SizedBox(height: 4.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: TextFormField(
+                controller: smallTaskNameController2,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "小タスク名2を入力してください",
+                  labelText: "小タスク名2",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+              ),
             ),
-            TextField(
-              controller: smallTaskNameController3,
+            const SizedBox(height: 4.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: TextFormField(
+                controller: smallTaskNameController3,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "小タスク名3を入力してください",
+                  labelText: "小タスク名3",
+                ),
+                autovalidateMode: AutovalidateMode.always,
+              ),
             ),
             Text('締切', style: Theme.of(context).textTheme.headline5),
             Row(

@@ -17,6 +17,5 @@ class GohobiMessageViewModel extends StateNotifier<AsyncValue<List<String>>> {
         failure: (error) => state = const AsyncValue.error("ユーザーが見つかりませんでした"),
       );
     });
-    print(state);
   }
 }
