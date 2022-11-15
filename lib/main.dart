@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:friend_task_share/viewmodel/detail_task_viewmodel.dart';
 import 'package:friend_task_share/viewmodel/gohobi_user_data_viewmodel.dart';
 import 'repository/friend_repository.dart';
 import 'repository/gohobi_repository.dart';
@@ -79,6 +80,10 @@ final submitGohobiProvider =
 final gohobiUserDataProvider = StateNotifierProvider.autoDispose<
         GohobiUserDataViewModel, AsyncValue<List<UserData>>>(
     (ref) => GohobiUserDataViewModel(ref.read(gohobiRepositoryProvider)));
+
+final detailTaskProvider =
+    StateNotifierProvider.autoDispose<DetailTaskViewModel, AsyncValue<Task>>(
+        (ref) => DetailTaskViewModel(ref.read(taskRepositoryProvider)));
 
 // TextEditingControllers
 

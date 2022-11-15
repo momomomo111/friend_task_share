@@ -29,7 +29,8 @@ class FirestoreApi {
           smallTaskName: (value.data() as Map<String, dynamic>)["smallTaskList"]
               .cast<String>(),
           gohobiListId: (value.data() as Map<String, dynamic>)["gohobiListId"]
-              .cast<String>());
+              .cast<String>(),
+          isDone: (value.data() as Map<String, dynamic>)["isDone"]);
     });
   }
 
@@ -87,5 +88,9 @@ class FirestoreApi {
     return await gohobis.doc(gohobiId).get().then((value) {
       return (value.data() as Map<String, dynamic>)["fromUserId"];
     });
+  }
+
+  Future<void> updateTaskIsDone(String taskId, bool isDone) async {
+    await tasks.doc(taskId).update({"isDone": isDone});
   }
 }

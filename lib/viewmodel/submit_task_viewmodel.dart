@@ -18,7 +18,8 @@ class SubmitTaskViewModel extends StateNotifier<Task> {
             taskName: "",
             deadline: DateTime.now(),
             smallTaskName: [],
-            gohobiListId: []));
+            gohobiListId: [],
+            isDone: false));
   final TaskRepository _taskRepository;
   final UserDataViewModel _userDataViewModel;
   final TextEditingController _taskNameController;

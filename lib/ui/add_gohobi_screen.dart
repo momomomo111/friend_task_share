@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../main.dart';
 
-class GohobiScreen extends HookConsumerWidget {
-  const GohobiScreen({Key? key, required this.taskId}) : super(key: key);
+class AddGohobiScreen extends HookConsumerWidget {
+  const AddGohobiScreen({Key? key, required this.taskId}) : super(key: key);
   final String taskId;
 
   @override

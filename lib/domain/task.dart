@@ -10,5 +10,6 @@ abstract class Task with _$Task {
     required DateTime deadline,
     required List<String> smallTaskName,
     required List<String> gohobiListId,
+    required bool isDone,
   }) = _Task;
 }

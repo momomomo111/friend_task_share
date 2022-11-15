@@ -53,13 +53,13 @@ class FriendTaskScren extends HookConsumerWidget {
                           title: Text(taskNames[index].taskName),
                           subtitle: Text(deadline),
                           onTap: () {
-                            AutoRouter.of(context)
-                                .push(DetailRoute(task: taskNames[index]));
+                            AutoRouter.of(context).push(DetailRoute(
+                                taskId: taskNames[index].uid, isMyTask: false));
                           },
                           trailing: ElevatedButton(
                             onPressed: () {
                               AutoRouter.of(context).push(
-                                  GohobiRoute(taskId: taskNames[index].uid));
+                                  AddGohobiRoute(taskId: taskNames[index].uid));
                             },
                             child: const Text("ごほうびをあげる"),
                           ),

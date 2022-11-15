@@ -13,12 +13,11 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
-import '../domain/task.dart' as _i11;
+import '../ui/add_gohobi_screen.dart' as _i6;
 import '../ui/add_task_screen.dart' as _i7;
 import '../ui/add_user_screen.dart' as _i8;
 import '../ui/detail_screen.dart' as _i5;
 import '../ui/friendtask_screen.dart' as _i3;
-import '../ui/gohobi_screen.dart' as _i6;
 import '../ui/home_screen.dart' as _i2;
 import '../ui/login_screen.dart' as _i1;
 import '../ui/mytask_screen.dart' as _i4;
@@ -49,13 +48,14 @@ class AppRouter extends _i9.RootStackRouter {
       final args = routeData.argsAs<DetailRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i5.DetailScreen(key: args.key, task: args.task));
+          child: _i5.DetailScreen(
+              key: args.key, taskId: args.taskId, isMyTask: args.isMyTask));
     },
-    GohobiRoute.name: (routeData) {
-      final args = routeData.argsAs<GohobiRouteArgs>();
+    AddGohobiRoute.name: (routeData) {
+      final args = routeData.argsAs<AddGohobiRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i6.GohobiScreen(key: args.key, taskId: args.taskId));
+          child: _i6.AddGohobiScreen(key: args.key, taskId: args.taskId));
     },
     AddTaskRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
@@ -74,7 +74,7 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(FriendTaskScren.name, path: '/friend-task-scren'),
         _i9.RouteConfig(MyTaskRoute.name, path: '/my-task-screen'),
         _i9.RouteConfig(DetailRoute.name, path: '/detail-screen'),
-        _i9.RouteConfig(GohobiRoute.name, path: '/gohobi-screen'),
+        _i9.RouteConfig(AddGohobiRoute.name, path: '/add-gohobi-screen'),
         _i9.RouteConfig(AddTaskRoute.name, path: '/add-task-screen'),
         _i9.RouteConfig(AddUserRoute.name, path: '/add-user-screen')
       ];
@@ -116,40 +116,44 @@ class MyTaskRoute extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DetailScreen]
 class DetailRoute extends _i9.PageRouteInfo<DetailRouteArgs> {
-  DetailRoute({_i10.Key? key, required _i11.Task task})
+  DetailRoute({_i10.Key? key, required String taskId, required bool isMyTask})
       : super(DetailRoute.name,
             path: '/detail-screen',
-            args: DetailRouteArgs(key: key, task: task));
+            args:
+                DetailRouteArgs(key: key, taskId: taskId, isMyTask: isMyTask));
 
   static const String name = 'DetailRoute';
 }
 
 class DetailRouteArgs {
-  const DetailRouteArgs({this.key, required this.task});
+  const DetailRouteArgs(
+      {this.key, required this.taskId, required this.isMyTask});
 
   final _i10.Key? key;
 
-  final _i11.Task task;
+  final String taskId;
+
+  final bool isMyTask;
 
   @override
   String toString() {
-    return 'DetailRouteArgs{key: $key, task: $task}';
+    return 'DetailRouteArgs{key: $key, taskId: $taskId, isMyTask: $isMyTask}';
   }
 }
 
 /// generated route for
-/// [_i6.GohobiScreen]
-class GohobiRoute extends _i9.PageRouteInfo<GohobiRouteArgs> {
-  GohobiRoute({_i10.Key? key, required String taskId})
-      : super(GohobiRoute.name,
-            path: '/gohobi-screen',
-            args: GohobiRouteArgs(key: key, taskId: taskId));
+/// [_i6.AddGohobiScreen]
+class AddGohobiRoute extends _i9.PageRouteInfo<AddGohobiRouteArgs> {
+  AddGohobiRoute({_i10.Key? key, required String taskId})
+      : super(AddGohobiRoute.name,
+            path: '/add-gohobi-screen',
+            args: AddGohobiRouteArgs(key: key, taskId: taskId));
 
-  static const String name = 'GohobiRoute';
+  static const String name = 'AddGohobiRoute';
 }
 
-class GohobiRouteArgs {
-  const GohobiRouteArgs({this.key, required this.taskId});
+class AddGohobiRouteArgs {
+  const AddGohobiRouteArgs({this.key, required this.taskId});
 
   final _i10.Key? key;
 
@@ -157,7 +161,7 @@ class GohobiRouteArgs {
 
   @override
   String toString() {
-    return 'GohobiRouteArgs{key: $key, taskId: $taskId}';
+    return 'AddGohobiRouteArgs{key: $key, taskId: $taskId}';
   }
 }
 

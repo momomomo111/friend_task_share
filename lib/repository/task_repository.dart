@@ -84,4 +84,15 @@ class TaskRepository {
     var taskId = await _client.addTask(taskName, smallTaskList, deadline);
     await _client.addTaskId(uid, taskId);
   }
+
+  Future<void> doneTask(String taskId) async {
+    await _client.updateTaskIsDone(taskId, true);
+  }
+
+  Future<Result<Task>> fetchTask(String taskId) async {
+    return await _client
+        .fetchTask(taskId)
+        .then((value) => Result<Task>.success(value))
+        .catchError((error) => Result<Task>.failure(error));
+  }
 }

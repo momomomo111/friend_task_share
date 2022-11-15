@@ -4,7 +4,7 @@ import '../ui/add_task_screen.dart';
 import '../ui/add_user_screen.dart';
 import '../ui/detail_screen.dart';
 import '../ui/friendtask_screen.dart';
-import '../ui/gohobi_screen.dart';
+import '../ui/add_gohobi_screen.dart';
 import '../ui/home_screen.dart';
 import '../ui/login_screen.dart';
 import '../ui/mytask_screen.dart';
@@ -17,7 +17,7 @@ import '../ui/mytask_screen.dart';
     AutoRoute(page: FriendTaskScren),
     AutoRoute(page: MyTaskScreen),
     AutoRoute(page: DetailScreen),
-    AutoRoute(page: GohobiScreen),
+    AutoRoute(page: AddGohobiScreen),
     AutoRoute(page: AddTaskScreen),
     AutoRoute(page: AddUserScreen),
   ],
