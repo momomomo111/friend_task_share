@@ -1,4 +1,4 @@
-import 'package:friend_task_share/domain/task.dart';
+import '../domain/task.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../repository/task_repository.dart';

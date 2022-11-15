@@ -1,4 +1,4 @@
-import 'package:friend_task_share/repository/gohobi_repository.dart';
+import '../repository/gohobi_repository.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
