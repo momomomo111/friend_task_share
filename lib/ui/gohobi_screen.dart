@@ -37,7 +37,25 @@ class GohobiScreen extends HookConsumerWidget {
               focusNode: focusNode,
             ),
             ElevatedButton(
-              onPressed: () => focusNode.unfocus(),
+              onPressed: () {
+                focusNode.unfocus();
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return AlertDialog(
+                      title: const Text('ごほうびメッセージを\n送信しました'),
+                      actions: <Widget>[
+                        OutlinedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: const Text('入力完了'),
             ),
           ],
