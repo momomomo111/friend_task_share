@@ -16,11 +16,11 @@ class MyTaskScreen extends HookConsumerWidget {
         title: const Text('自分のタスクリスト画面'),
       ),
       body: Center(
-        child: myTaskNames.when(
-            data: (taskNames) => Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            myTaskNames.when(
+                data: (taskNames) => Expanded(
                       child: RefreshIndicator(
                         onRefresh: () => ref
                             .read(mytaskNameProvider.notifier)
@@ -59,22 +59,37 @@ class MyTaskScreen extends HookConsumerWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            AutoRouter.of(context).push(const AddTaskRoute());
-                          },
-                          child: const Text("タスク追加"),
+                error: (error, _) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "自分のタスクを取得できませんでした。\n右下のボタンからタスクを追加してください。",
+                          textAlign: TextAlign.center,
                         ),
-                      ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: (() => ref
+                              .read(mytaskNameProvider.notifier)
+                              .fetchTaskList()),
+                          child: const Text("再読み込み"),
+                        )
+                      ],
                     ),
-                  ],
+                loading: () => const CircularProgressIndicator()),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    AutoRouter.of(context).push(const AddTaskRoute());
+                  },
+                  child: const Text("タスク追加"),
                 ),
-            error: (error, _) => Text(error.toString()),
-            loading: () => const CircularProgressIndicator()),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

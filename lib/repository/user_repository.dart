@@ -5,6 +5,11 @@ class UserRepository {
   final FirestoreApi _client;
 
   Future<void> createUserData(String uid, String name, String imageUrl) async {
-    await _client.createUserData(uid, name, imageUrl);
+    try {
+      await _client.fetchFriendUserId(uid);
+      await _client.fetchTaskIdList(uid);
+    } catch (e) {
+      await _client.createUserData(uid, name, imageUrl);
+    }
   }
 }

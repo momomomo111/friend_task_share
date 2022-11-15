@@ -74,6 +74,7 @@ class FriendTaskScren extends HookConsumerWidget {
                   "友達のタスクを取得できませんでした。\n友達を追加するか友達にタスクを追加してもらってください。",
                   textAlign: TextAlign.center,
                 ),
+                const SizedBox(height: 20),
                 ElevatedButton(
                     onPressed: (() => ref
                         .read(friendtaskNameProvider.notifier)

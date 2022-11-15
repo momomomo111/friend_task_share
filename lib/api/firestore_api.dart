@@ -35,9 +35,12 @@ class FirestoreApi {
   }
 
   Future<void> createUserData(String uid, String name, String imageUrl) async {
-    users
-        .doc(uid)
-        .set({"name": name, "imageUrl": imageUrl}, SetOptions(merge: true));
+    users.doc(uid).set({
+      "friendUserId": [],
+      "name": name,
+      "imageUrl": imageUrl,
+      "taskList": []
+    }, SetOptions(merge: true));
   }
 
   Future<UserData> fetchUserData(String uid) async {
@@ -61,7 +64,8 @@ class FirestoreApi {
       "taskName": taskName,
       "smallTaskList": smallTaskList,
       "deadline": deadline,
-      "gohobiListId": []
+      "gohobiListId": [],
+      "isDone": false
     });
     return uid.id;
   }
