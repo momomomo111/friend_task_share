@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:friend_task_share/main.dart';
+import 'package:friend_task_share/ui/home_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(
       const ProviderScope(
-        child: MyApp(),
+        child: HomeScreen(),
       ),
     );
 

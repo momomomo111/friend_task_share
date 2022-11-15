@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1044762692991",
+    "project_id": "friend-task-share",
+    "storage_bucket": "friend-task-share.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044762692991:android:bb7568529c4f43523b1e4a",
+        "android_client_info": {
+          "package_name": "com.momomomo111.friend_task_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044762692991-0e3vagg7gddd2j01mb0pksqo8qb4loh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAodsSWgDguZVHeLnczCxrfYVFISkik6oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044762692991-0e3vagg7gddd2j01mb0pksqo8qb4loh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
