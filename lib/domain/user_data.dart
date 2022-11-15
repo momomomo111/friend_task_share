@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'task.dart';
-
 part 'user_data.freezed.dart';
 
 @freezed

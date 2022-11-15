@@ -93,4 +93,10 @@ class FirestoreApi {
   Future<void> updateTaskIsDone(String taskId, bool isDone) async {
     await tasks.doc(taskId).update({"isDone": isDone});
   }
+
+  Future<String> fetchGohobiMessage(String gohobiId) async {
+    return await gohobis.doc(gohobiId).get().then((value) {
+      return (value.data() as Map<String, dynamic>)["message"];
+    });
+  }
 }

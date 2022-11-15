@@ -44,4 +44,28 @@ class GohobiRepository {
     }
     return Result<List<UserData>>.success(userDataList);
   }
+
+  Future<Result<String>> fetchGohobiMessage(String gohobiId) async {
+    return await _client
+        .fetchGohobiMessage(gohobiId)
+        .then((value) => Result<String>.success(value))
+        .catchError((error) => Result<String>.failure(error));
+  }
+
+  Future<Result<List<String>>> fetchGohobiListMessageList(
+      List<String> gohobiIdList) async {
+    var messageList = <String>[];
+    try {
+      for (var gohobiId in gohobiIdList) {
+        var message = await _client
+            .fetchGohobiMessage(gohobiId)
+            .then((value) => value)
+            .catchError((error) => throw error);
+        messageList.add(message);
+      }
+    } catch (error) {
+      return Result<List<String>>.failure(error);
+    }
+    return Result<List<String>>.success(messageList);
+  }
 }
