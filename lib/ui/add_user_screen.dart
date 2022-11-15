@@ -13,11 +13,11 @@ class AddUserScreen extends HookConsumerWidget {
     final userVisibility = useState(false);
     final focusNode = useFocusNode();
     final myUserProvider = ref.watch(userDataProvider);
-    final friendUserProvider = ref.watch(friendUserDataProvider);
+    final friendUserProvider = ref.watch(searchUserDataProvider);
 
     focusNode.addListener(() {
       if (!focusNode.hasFocus && searchIdController.text.isNotEmpty) {
-        ref.read(friendUserDataProvider.notifier).searchUserData(
+        ref.read(searchUserDataProvider.notifier).searchUserData(
               searchIdController.text,
             );
         userVisibility.value = true;
@@ -68,7 +68,7 @@ class AddUserScreen extends HookConsumerWidget {
                               onPressed: () {
                                 userVisibility.value = false;
                                 ref
-                                    .read(friendUserDataProvider.notifier)
+                                    .read(searchUserDataProvider.notifier)
                                     .addFriendUser(
                                         myUserProvider.uid, friendUser.uid);
                               },

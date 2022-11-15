@@ -82,4 +82,10 @@ class FirestoreApi {
       "taskList": FieldValue.arrayUnion([taskId])
     });
   }
+
+  Future<String> fetchGohobiFromUserId(String gohobiId) async {
+    return await gohobis.doc(gohobiId).get().then((value) {
+      return (value.data() as Map<String, dynamic>)["fromUserId"];
+    });
+  }
 }

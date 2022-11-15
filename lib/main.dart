@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:friend_task_share/viewmodel/gohobi_user_data_viewmodel.dart';
 import 'repository/friend_repository.dart';
 import 'repository/gohobi_repository.dart';
-import 'viewmodel/friend_user_data_viewmodel.dart';
+import 'viewmodel/search_user_data_viewmodel.dart';
 import 'viewmodel/submit_gohobi_viewmodel.dart';
 import 'viewmodel/submit_task_viewmodel.dart';
 import 'api/firestore_api.dart';
@@ -57,9 +58,9 @@ final googlSignInProvider = ChangeNotifierProvider.autoDispose(
 final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
     (ref) => UserDataViewModel(ref.read(userRepositoryProvider)));
 
-final friendUserDataProvider = StateNotifierProvider.autoDispose<
-        FriendUserDataViewModel, AsyncValue<UserData>>(
-    (ref) => FriendUserDataViewModel(ref.read(friendRepositoryProvider)));
+final searchUserDataProvider = StateNotifierProvider.autoDispose<
+        SearchUserDataViewModel, AsyncValue<UserData>>(
+    (ref) => SearchUserDataViewModel(ref.read(friendRepositoryProvider)));
 
 final submitTaskProvider =
     StateNotifierProvider.autoDispose<SubmitTaskViewModel, Task>((ref) =>
@@ -74,6 +75,10 @@ final submitTaskProvider =
 final submitGohobiProvider =
     StateNotifierProvider.autoDispose<SubmitGohobiViewModel, Gohobi>(
         (ref) => SubmitGohobiViewModel(ref.read(gohobiRepositoryProvider)));
+
+final gohobiUserDataProvider = StateNotifierProvider.autoDispose<
+        GohobiUserDataViewModel, AsyncValue<List<UserData>>>(
+    (ref) => GohobiUserDataViewModel(ref.read(gohobiRepositoryProvider)));
 
 // TextEditingControllers
 

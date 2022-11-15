@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/user_data.dart';
 
-class FriendUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
-  FriendUserDataViewModel(this._friendRepository) : super(const AsyncLoading());
+class SearchUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
+  SearchUserDataViewModel(this._friendRepository) : super(const AsyncLoading());
   final FriendRepository _friendRepository;
 
   Future<void> searchUserData(String userId) async {
