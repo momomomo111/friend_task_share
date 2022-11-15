@@ -79,7 +79,8 @@ class AddTaskScreen extends HookConsumerWidget {
                             child: const Text("OK"),
                             onPressed: () {
                               submitProvider.submitTask();
-                              AutoRouter.of(context).pop();
+                              AutoRouter.of(context)
+                                  .popUntil((route) => route.isFirst);
                             },
                           ),
                         ],
