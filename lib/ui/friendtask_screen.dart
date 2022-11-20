@@ -25,7 +25,7 @@ class FriendTaskScren extends HookConsumerWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              ref.read(googlSignInProvider.notifier).logout(() {
+              ref.read(authSignInProvider.notifier).logout(() {
                 AutoRouter.of(context).replace(const LoginRoute());
               });
             },

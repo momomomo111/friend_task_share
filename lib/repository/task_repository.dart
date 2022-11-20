@@ -1,7 +1,6 @@
 import '../api/firestore_api.dart';
-import '../response/result.dart';
-
 import '../domain/task.dart';
+import '../response/result.dart';
 
 class TaskRepository {
   TaskRepository(this._client);

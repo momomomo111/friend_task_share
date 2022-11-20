@@ -1,7 +1,7 @@
-import '../repository/friend_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/user_data.dart';
+import '../repository/friend_repository.dart';
 
 class SearchUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
   SearchUserDataViewModel(this._friendRepository) : super(const AsyncLoading());

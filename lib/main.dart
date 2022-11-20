@@ -13,11 +13,11 @@ import 'repository/friend_repository.dart';
 import 'repository/gohobi_repository.dart';
 import 'repository/task_repository.dart';
 import 'repository/user_repository.dart';
+import 'viewmodel/auth_signin_notifier.dart';
 import 'viewmodel/detail_task_viewmodel.dart';
 import 'viewmodel/friendtask_name_viewmodel.dart';
 import 'viewmodel/gohobi_user_data_viewmodel.dart';
 import 'viewmodel/gohobi_viewmodel.dart';
-import 'viewmodel/google_signin_notifier.dart';
 import 'viewmodel/mytask_name_viewmodel.dart';
 import 'viewmodel/search_user_data_viewmodel.dart';
 import 'viewmodel/submit_gohobi_viewmodel.dart';
@@ -55,9 +55,9 @@ final mytaskNameProvider = StateNotifierProvider
               ref.read(userDataProvider.notifier),
             ));
 
-final googlSignInProvider =
-    StateNotifierProvider<GooglSignInNotifier, FirebaseAuth>(
-        (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
+final authSignInProvider =
+    StateNotifierProvider<AuthSignInNotifier, FirebaseAuth>(
+        (ref) => AuthSignInNotifier(ref.read(userDataProvider.notifier)));
 
 final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
     (ref) => UserDataViewModel(ref.read(userRepositoryProvider)));
