@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'user_data_viewmodel.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GooglSignInNotifier extends ChangeNotifier {
-  GooglSignInNotifier(this._read);
+import 'user_data_viewmodel.dart';
+
+class GooglSignInNotifier extends StateNotifier<FirebaseAuth> {
+  GooglSignInNotifier(this._read) : super(FirebaseAuth.instance);
   final _googleSignIn = GoogleSignIn();
-  FirebaseAuth auth = FirebaseAuth.instance;
   final UserDataViewModel _read;
 
   Future googleLogin(void Function() onSuccess) async {
@@ -23,10 +23,9 @@ class GooglSignInNotifier extends ChangeNotifier {
         idToken: googlAuth.idToken,
       );
 
-      await auth.signInWithCredential(credential);
-      notifyListeners();
-      _read.initBaseData(auth.currentUser!.uid, auth.currentUser!.displayName!,
-          auth.currentUser!.photoURL!);
+      await state.signInWithCredential(credential);
+      _read.initBaseData(state.currentUser!.uid,
+          state.currentUser!.displayName!, state.currentUser!.photoURL!);
       _read.createUserData();
       onSuccess();
     } catch (e) {

@@ -12,16 +12,16 @@ class HomeScreen extends HookConsumerWidget {
     final googleProvider = ref.watch(googlSignInProvider);
     final userProvider = ref.read(userDataProvider.notifier);
 
-    if (googleProvider.auth.currentUser == null) {
+    if (googleProvider.currentUser == null) {
       AutoRouter.of(context).replace(const LoginRoute());
       AutoRouter.of(context).removeUntil((route) => false);
     } else {
       AutoRouter.of(context).replace(const FriendTaskScren());
       AutoRouter.of(context).removeUntil((route) => false);
       userProvider.initBaseData(
-        googleProvider.auth.currentUser!.uid,
-        googleProvider.auth.currentUser!.displayName!,
-        googleProvider.auth.currentUser!.photoURL!,
+        googleProvider.currentUser!.uid,
+        googleProvider.currentUser!.displayName!,
+        googleProvider.currentUser!.photoURL!,
       );
     }
     return const Center(

@@ -1,27 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'viewmodel/detail_task_viewmodel.dart';
-import 'viewmodel/gohobi_user_data_viewmodel.dart';
-import 'viewmodel/gohobi_viewmodel.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'api/firestore_api.dart';
+import 'domain/gohobi.dart';
+import 'domain/task.dart';
+import 'domain/user_data.dart';
+import 'firebase_options.dart';
+import 'navigation/route_page.dart';
 import 'repository/friend_repository.dart';
 import 'repository/gohobi_repository.dart';
+import 'repository/task_repository.dart';
+import 'repository/user_repository.dart';
+import 'viewmodel/detail_task_viewmodel.dart';
+import 'viewmodel/friendtask_name_viewmodel.dart';
+import 'viewmodel/gohobi_user_data_viewmodel.dart';
+import 'viewmodel/gohobi_viewmodel.dart';
+import 'viewmodel/google_signin_notifier.dart';
+import 'viewmodel/mytask_name_viewmodel.dart';
 import 'viewmodel/search_user_data_viewmodel.dart';
 import 'viewmodel/submit_gohobi_viewmodel.dart';
 import 'viewmodel/submit_task_viewmodel.dart';
-import 'api/firestore_api.dart';
-import 'domain/gohobi.dart';
-import 'repository/task_repository.dart';
-import 'repository/user_repository.dart';
-import 'domain/user_data.dart';
 import 'viewmodel/user_data_viewmodel.dart';
-import 'domain/task.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'firebase_options.dart';
-import 'navigation/route_page.dart';
-import 'viewmodel/friendtask_name_viewmodel.dart';
-import 'viewmodel/google_signin_notifier.dart';
-import 'viewmodel/mytask_name_viewmodel.dart';
 
 // Api
 final fireStoreApiProvider = Provider.autoDispose((ref) => FirestoreApi());
@@ -54,8 +55,9 @@ final mytaskNameProvider = StateNotifierProvider
               ref.read(userDataProvider.notifier),
             ));
 
-final googlSignInProvider = ChangeNotifierProvider.autoDispose(
-    (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
+final googlSignInProvider =
+    StateNotifierProvider<GooglSignInNotifier, FirebaseAuth>(
+        (ref) => GooglSignInNotifier(ref.read(userDataProvider.notifier)));
 
 final userDataProvider = StateNotifierProvider<UserDataViewModel, UserData>(
     (ref) => UserDataViewModel(ref.read(userRepositoryProvider)));

@@ -10,7 +10,6 @@ class LoginScreen extends HookConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final googleProvider = ref.watch(googlSignInProvider);
     return Scaffold(
       body: Center(
         child: Column(
@@ -66,7 +65,8 @@ class LoginScreen extends HookConsumerWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: const EdgeInsets.all(16.0),
-                  onPressed: () => googleProvider.googleLogin(() {
+                  onPressed: () =>
+                      ref.read(googlSignInProvider.notifier).googleLogin(() {
                     AutoRouter.of(context).replace(const HomeRoute());
                     AutoRouter.of(context).removeUntil((route) => false);
                   }),

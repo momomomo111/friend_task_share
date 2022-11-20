@@ -1,7 +1,6 @@
+import '../api/firestore_api.dart';
 import '../domain/user_data.dart';
 import '../response/result.dart';
-
-import '../api/firestore_api.dart';
 
 class GohobiRepository {
   GohobiRepository(this._client);

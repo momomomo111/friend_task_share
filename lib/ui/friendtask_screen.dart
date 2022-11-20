@@ -11,7 +11,6 @@ class FriendTaskScren extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final googleProvider = ref.watch(googlSignInProvider);
     final friendTaskNames = ref.watch(friendtaskNameProvider);
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +25,7 @@ class FriendTaskScren extends HookConsumerWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              googleProvider.logout(() {
+              ref.read(googlSignInProvider.notifier).logout(() {
                 AutoRouter.of(context).replace(const LoginRoute());
               });
             },
