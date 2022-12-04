@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -85,7 +84,7 @@ class LoginScreen extends HookConsumerWidget {
                   onPressed: () {},
                 ),
                 const SizedBox(height: 20),
-                Platform.isIOS
+                TargetPlatform.iOS == defaultTargetPlatform
                     ? SignInButton(
                         Buttons.AppleDark,
                         text: "Appleでログイン",
