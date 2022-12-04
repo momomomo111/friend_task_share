@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../domain/user_data.dart';
 
 import '../domain/task.dart';
+import '../domain/user_data.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
