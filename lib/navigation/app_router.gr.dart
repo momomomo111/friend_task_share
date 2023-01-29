@@ -10,6 +10,7 @@
 //
 // ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
@@ -30,60 +31,108 @@ class AppRouter extends _i9.RootStackRouter {
   final Map<String, _i9.PageFactory> pagesMap = {
     LoginRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.LoginScreen());
+        routeData: routeData,
+        child: const _i1.LoginScreen(),
+      );
     },
     HomeRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.HomeScreen());
+        routeData: routeData,
+        child: const _i2.HomeScreen(),
+      );
     },
     FriendTaskScren.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.FriendTaskScren());
+        routeData: routeData,
+        child: const _i3.FriendTaskScren(),
+      );
     },
     MyTaskRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.MyTaskScreen());
+        routeData: routeData,
+        child: const _i4.MyTaskScreen(),
+      );
     },
     DetailRoute.name: (routeData) {
       final args = routeData.argsAs<DetailRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i5.DetailScreen(
-              key: args.key, taskId: args.taskId, isMyTask: args.isMyTask));
+        routeData: routeData,
+        child: _i5.DetailScreen(
+          key: args.key,
+          taskId: args.taskId,
+          isMyTask: args.isMyTask,
+        ),
+      );
     },
     AddGohobiRoute.name: (routeData) {
       final args = routeData.argsAs<AddGohobiRouteArgs>();
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i6.AddGohobiScreen(key: args.key, taskId: args.taskId));
+        routeData: routeData,
+        child: _i6.AddGohobiScreen(
+          key: args.key,
+          taskId: args.taskId,
+        ),
+      );
     },
     AddTaskRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.AddTaskScreen());
+        routeData: routeData,
+        child: const _i7.AddTaskScreen(),
+      );
     },
     AddUserRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.AddUserScreen());
-    }
+        routeData: routeData,
+        child: const _i8.AddUserScreen(),
+      );
+    },
   };
 
   @override
   List<_i9.RouteConfig> get routes => [
-        _i9.RouteConfig(LoginRoute.name, path: '/login-screen'),
-        _i9.RouteConfig(HomeRoute.name, path: '/'),
-        _i9.RouteConfig(FriendTaskScren.name, path: '/friend-task-scren'),
-        _i9.RouteConfig(MyTaskRoute.name, path: '/my-task-screen'),
-        _i9.RouteConfig(DetailRoute.name, path: '/detail-screen'),
-        _i9.RouteConfig(AddGohobiRoute.name, path: '/add-gohobi-screen'),
-        _i9.RouteConfig(AddTaskRoute.name, path: '/add-task-screen'),
-        _i9.RouteConfig(AddUserRoute.name, path: '/add-user-screen')
+        _i9.RouteConfig(
+          LoginRoute.name,
+          path: '/login-screen',
+        ),
+        _i9.RouteConfig(
+          HomeRoute.name,
+          path: '/',
+        ),
+        _i9.RouteConfig(
+          FriendTaskScren.name,
+          path: '/friend-task-scren',
+        ),
+        _i9.RouteConfig(
+          MyTaskRoute.name,
+          path: '/my-task-screen',
+        ),
+        _i9.RouteConfig(
+          DetailRoute.name,
+          path: '/detail-screen',
+        ),
+        _i9.RouteConfig(
+          AddGohobiRoute.name,
+          path: '/add-gohobi-screen',
+        ),
+        _i9.RouteConfig(
+          AddTaskRoute.name,
+          path: '/add-task-screen',
+        ),
+        _i9.RouteConfig(
+          AddUserRoute.name,
+          path: '/add-user-screen',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.LoginScreen]
 class LoginRoute extends _i9.PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: '/login-screen');
+  const LoginRoute()
+      : super(
+          LoginRoute.name,
+          path: '/login-screen',
+        );
 
   static const String name = 'LoginRoute';
 }
@@ -91,7 +140,11 @@ class LoginRoute extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.HomeScreen]
 class HomeRoute extends _i9.PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute()
+      : super(
+          HomeRoute.name,
+          path: '/',
+        );
 
   static const String name = 'HomeRoute';
 }
@@ -100,7 +153,10 @@ class HomeRoute extends _i9.PageRouteInfo<void> {
 /// [_i3.FriendTaskScren]
 class FriendTaskScren extends _i9.PageRouteInfo<void> {
   const FriendTaskScren()
-      : super(FriendTaskScren.name, path: '/friend-task-scren');
+      : super(
+          FriendTaskScren.name,
+          path: '/friend-task-scren',
+        );
 
   static const String name = 'FriendTaskScren';
 }
@@ -108,7 +164,11 @@ class FriendTaskScren extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.MyTaskScreen]
 class MyTaskRoute extends _i9.PageRouteInfo<void> {
-  const MyTaskRoute() : super(MyTaskRoute.name, path: '/my-task-screen');
+  const MyTaskRoute()
+      : super(
+          MyTaskRoute.name,
+          path: '/my-task-screen',
+        );
 
   static const String name = 'MyTaskRoute';
 }
@@ -116,18 +176,29 @@ class MyTaskRoute extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DetailScreen]
 class DetailRoute extends _i9.PageRouteInfo<DetailRouteArgs> {
-  DetailRoute({_i10.Key? key, required String taskId, required bool isMyTask})
-      : super(DetailRoute.name,
-            path: '/detail-screen',
-            args:
-                DetailRouteArgs(key: key, taskId: taskId, isMyTask: isMyTask));
+  DetailRoute({
+    _i10.Key? key,
+    required String taskId,
+    required bool isMyTask,
+  }) : super(
+          DetailRoute.name,
+          path: '/detail-screen',
+          args: DetailRouteArgs(
+            key: key,
+            taskId: taskId,
+            isMyTask: isMyTask,
+          ),
+        );
 
   static const String name = 'DetailRoute';
 }
 
 class DetailRouteArgs {
-  const DetailRouteArgs(
-      {this.key, required this.taskId, required this.isMyTask});
+  const DetailRouteArgs({
+    this.key,
+    required this.taskId,
+    required this.isMyTask,
+  });
 
   final _i10.Key? key;
 
@@ -144,16 +215,26 @@ class DetailRouteArgs {
 /// generated route for
 /// [_i6.AddGohobiScreen]
 class AddGohobiRoute extends _i9.PageRouteInfo<AddGohobiRouteArgs> {
-  AddGohobiRoute({_i10.Key? key, required String taskId})
-      : super(AddGohobiRoute.name,
-            path: '/add-gohobi-screen',
-            args: AddGohobiRouteArgs(key: key, taskId: taskId));
+  AddGohobiRoute({
+    _i10.Key? key,
+    required String taskId,
+  }) : super(
+          AddGohobiRoute.name,
+          path: '/add-gohobi-screen',
+          args: AddGohobiRouteArgs(
+            key: key,
+            taskId: taskId,
+          ),
+        );
 
   static const String name = 'AddGohobiRoute';
 }
 
 class AddGohobiRouteArgs {
-  const AddGohobiRouteArgs({this.key, required this.taskId});
+  const AddGohobiRouteArgs({
+    this.key,
+    required this.taskId,
+  });
 
   final _i10.Key? key;
 
@@ -168,7 +249,11 @@ class AddGohobiRouteArgs {
 /// generated route for
 /// [_i7.AddTaskScreen]
 class AddTaskRoute extends _i9.PageRouteInfo<void> {
-  const AddTaskRoute() : super(AddTaskRoute.name, path: '/add-task-screen');
+  const AddTaskRoute()
+      : super(
+          AddTaskRoute.name,
+          path: '/add-task-screen',
+        );
 
   static const String name = 'AddTaskRoute';
 }
@@ -176,7 +261,11 @@ class AddTaskRoute extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.AddUserScreen]
 class AddUserRoute extends _i9.PageRouteInfo<void> {
-  const AddUserRoute() : super(AddUserRoute.name, path: '/add-user-screen');
+  const AddUserRoute()
+      : super(
+          AddUserRoute.name,
+          path: '/add-user-screen',
+        );
 
   static const String name = 'AddUserRoute';
 }

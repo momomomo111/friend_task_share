@@ -17,8 +17,8 @@ class MyTaskNameViewModel extends StateNotifier<AsyncValue<List<Task>>> {
     await _taskRepository.fetchTaskList(uid).then((result) {
       result.when(success: ((value) {
         state = AsyncValue.data(value);
-      }), failure: (error) {
-        state = AsyncValue.error(error);
+      }), failure: (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
       });
     });
   }

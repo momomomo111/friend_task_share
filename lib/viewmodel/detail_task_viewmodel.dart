@@ -13,8 +13,8 @@ class DetailTaskViewModel extends StateNotifier<AsyncValue<Task>> {
     await _taskRepository.fetchTask(taskId).then((result) {
       result.when(success: ((value) {
         state = AsyncValue.data(value);
-      }), failure: (error) {
-        state = AsyncValue.error(error);
+      }), failure: (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
       });
     });
   }

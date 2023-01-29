@@ -12,8 +12,8 @@ class SearchUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
     await _friendRepository.fetchUserData(userId).then((result) {
       result.when(
           success: ((value) => state = AsyncValue.data(value)),
-          failure: (error) =>
-              state = const AsyncValue.error("ユーザーが見つかりませんでした"));
+          failure: (error, stackTrace) =>
+              state = AsyncValue.error(error, stackTrace));
     });
   }
 
