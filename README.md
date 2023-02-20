@@ -6,4 +6,6 @@
 This application allows you to share To-Do tasks with your friends.
 You can send "Reward Messages" to your friends' To-Do tasks, and the recipient can view the "Reward Messages" when the task is completed.
 
+[プライバシーポリシー](https://momomomo111.github.io/friend_task_share/PrivacyPolicy/Japanese)
+
 #### Powerd by 東北 Tech 道場
