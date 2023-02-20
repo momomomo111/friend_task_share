@@ -1,7 +1,7 @@
-import '../repository/friend_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/user_data.dart';
+import '../repository/friend_repository.dart';
 
 class SearchUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
   SearchUserDataViewModel(this._friendRepository) : super(const AsyncLoading());
@@ -12,8 +12,8 @@ class SearchUserDataViewModel extends StateNotifier<AsyncValue<UserData>> {
     await _friendRepository.fetchUserData(userId).then((result) {
       result.when(
           success: ((value) => state = AsyncValue.data(value)),
-          failure: (error) =>
-              state = const AsyncValue.error("ユーザーが見つかりませんでした"));
+          failure: (error, stackTrace) =>
+              state = AsyncValue.error(error, stackTrace));
     });
   }
 

@@ -1,7 +1,6 @@
 import '../api/firestore_api.dart';
-import '../response/result.dart';
-
 import '../domain/task.dart';
+import '../response/result.dart';
 
 class TaskRepository {
   TaskRepository(this._client);
@@ -12,7 +11,8 @@ class TaskRepository {
     return await _client
         .fetchFriendUserId(uid)
         .then((friendUserId) => Result<List<String>>.success(friendUserId))
-        .catchError((error) => Result<List<String>>.failure(error));
+        .catchError((error, stackTrace) =>
+            Result<List<String>>.failure(error, stackTrace));
   }
 
   Future<Result<List<String>>> fetchFriendTaskIdList(
@@ -26,8 +26,8 @@ class TaskRepository {
             .catchError((error) => error);
         friendTaskList.addAll(taskList);
       }
-    } catch (error) {
-      return Result<List<String>>.failure(error);
+    } catch (error, stackTrace) {
+      return Result<List<String>>.failure(error, stackTrace);
     }
     return Result<List<String>>.success(friendTaskList);
   }
@@ -47,8 +47,8 @@ class TaskRepository {
             .catchError((error) => throw error);
         taskList.add(task);
       }
-    } catch (error) {
-      return Result<List<Task>>.failure(error);
+    } catch (error, stackTrace) {
+      return Result<List<Task>>.failure(error, stackTrace);
     }
     return Result<List<Task>>.success(taskList);
   }
@@ -58,12 +58,14 @@ class TaskRepository {
     try {
       var friendUserIdList = await fetchFriendUserId(uid).then((result) {
         return result.when(
-            success: (value) => value, failure: (error) => throw error);
+            success: (value) => value,
+            failure: (error, stackTrace) => throw error);
       });
       var friendTaskIdList =
           await fetchFriendTaskIdList(friendUserIdList).then((result) {
         return result.when(
-            success: (value) => value, failure: (error) => throw error);
+            success: (value) => value,
+            failure: (error, stackTrace) => throw error);
       });
 
       for (var element in friendTaskIdList) {
@@ -73,8 +75,8 @@ class TaskRepository {
             .catchError((error) => throw error);
         taskList.add(task);
       }
-    } catch (error) {
-      return Result<List<Task>>.failure(error);
+    } catch (error, stackTrace) {
+      return Result<List<Task>>.failure(error, stackTrace);
     }
     return Result<List<Task>>.success(taskList);
   }
@@ -93,6 +95,7 @@ class TaskRepository {
     return await _client
         .fetchTask(taskId)
         .then((value) => Result<Task>.success(value))
-        .catchError((error) => Result<Task>.failure(error));
+        .catchError(
+            (error, stackTrace) => Result<Task>.failure(error, stackTrace));
   }
 }

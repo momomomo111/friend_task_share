@@ -1,7 +1,6 @@
+import '../api/firestore_api.dart';
 import '../domain/user_data.dart';
 import '../response/result.dart';
-
-import '../api/firestore_api.dart';
 
 class GohobiRepository {
   GohobiRepository(this._client);
@@ -26,7 +25,8 @@ class GohobiRepository {
     return await _client
         .fetchUserData(userId)
         .then((value) => Result<UserData>.success(value))
-        .catchError((error) => Result<UserData>.failure(error));
+        .catchError(
+            (error, stackTrace) => Result<UserData>.failure(error, stackTrace));
   }
 
   Future<Result<List<UserData>>> fetchGohobiListFromUserDataList(
@@ -37,10 +37,10 @@ class GohobiRepository {
         var userData = await fetchGohobiFromUserData(gohobiId);
         userData.when(
             success: (userData) => userDataList.add(userData),
-            failure: (error) => throw error);
+            failure: (error, stackTrace) => throw error);
       }
-    } catch (error) {
-      return Result<List<UserData>>.failure(error);
+    } catch (error, stackTrace) {
+      return Result<List<UserData>>.failure(error, stackTrace);
     }
     return Result<List<UserData>>.success(userDataList);
   }
@@ -49,7 +49,8 @@ class GohobiRepository {
     return await _client
         .fetchGohobiMessage(gohobiId)
         .then((value) => Result<String>.success(value))
-        .catchError((error) => Result<String>.failure(error));
+        .catchError(
+            (error, stackTrace) => Result<String>.failure(error, stackTrace));
   }
 
   Future<Result<List<String>>> fetchGohobiListMessageList(
@@ -63,8 +64,8 @@ class GohobiRepository {
             .catchError((error) => throw error);
         messageList.add(message);
       }
-    } catch (error) {
-      return Result<List<String>>.failure(error);
+    } catch (error, stackTrace) {
+      return Result<List<String>>.failure(error, stackTrace);
     }
     return Result<List<String>>.success(messageList);
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'user_data_viewmodel.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/task.dart';
 import '../repository/task_repository.dart';
+import 'user_data_viewmodel.dart';
 
 class SubmitTaskViewModel extends StateNotifier<Task> {
   SubmitTaskViewModel(

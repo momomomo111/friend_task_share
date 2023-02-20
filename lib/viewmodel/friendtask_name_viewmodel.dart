@@ -18,8 +18,8 @@ class FriendTaskNameViewModel extends StateNotifier<AsyncValue<List<Task>>> {
     await _taskRepository.fetchFriendTaskList(uid).then((result) {
       result.when(success: ((value) {
         state = AsyncValue.data(value);
-      }), failure: (error) {
-        state = AsyncValue.error(error);
+      }), failure: (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
       });
     });
   }

@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,7 +12,6 @@ class LoginScreen extends HookConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final googleProvider = ref.watch(googlSignInProvider);
     return Scaffold(
       body: Center(
         child: Column(
@@ -66,51 +67,59 @@ class LoginScreen extends HookConsumerWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: const EdgeInsets.all(16.0),
-                  onPressed: () => googleProvider.googleLogin(() {
+                  onPressed: () =>
+                      ref.read(authSignInProvider.notifier).googleLogin(() {
                     AutoRouter.of(context).replace(const HomeRoute());
                     AutoRouter.of(context).removeUntil((route) => false);
                   }),
                 ),
+                // const SizedBox(height: 20),
+                // SignInButton(
+                //   Buttons.Twitter,
+                //   text: "Twitterでログイン",
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   padding: const EdgeInsets.all(16.0),
+                //   onPressed: () {},
+                // ),
                 const SizedBox(height: 20),
-                SignInButton(
-                  Buttons.Twitter,
-                  text: "Twitterでログイン",
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.all(16.0),
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 20),
-                SignInButton(
-                  Buttons.AppleDark,
-                  text: "Appleでログイン",
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.all(16.0),
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 20),
-                SignInButton(
-                  Buttons.FacebookNew,
-                  text: "Facebookでログイン",
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.all(16.0),
-                  onPressed: () {},
-                ),
-                const SizedBox(height: 20),
-                SignInButton(
-                  Buttons.Email,
-                  text: "メールでログイン",
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.all(16.0),
-                  onPressed: () {},
-                )
+                TargetPlatform.iOS == defaultTargetPlatform
+                    ? SignInButton(
+                        Buttons.AppleDark,
+                        text: "Appleでログイン",
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.all(16.0),
+                        onPressed: () => ref
+                            .read(authSignInProvider.notifier)
+                            .appleLogin(() {
+                          AutoRouter.of(context).replace(const HomeRoute());
+                          AutoRouter.of(context).removeUntil((route) => false);
+                        }),
+                      )
+                    : Container(),
+                // const SizedBox(height: 20),
+                // SignInButton(
+                //   Buttons.FacebookNew,
+                //   text: "Facebookでログイン",
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   padding: const EdgeInsets.all(16.0),
+                //   onPressed: () {},
+                // ),
+                // const SizedBox(height: 20),
+                // SignInButton(
+                //   Buttons.Email,
+                //   text: "メールでログイン",
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   padding: const EdgeInsets.all(16.0),
+                //   onPressed: () {},
+                // )
               ],
             ),
           ],

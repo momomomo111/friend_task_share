@@ -3,9 +3,10 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import '../main.dart';
+import 'components/gradient_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../main.dart';
 import '../navigation/app_router.gr.dart';
 import '../util/date_util.dart';
 
@@ -119,6 +120,9 @@ class DetailScreen extends HookConsumerWidget {
                                 .fetchGohobiListUserList(
                                   task.gohobiListId,
                                 );
+                            ref
+                                .read(gohobiMessageProvider.notifier)
+                                .fetchGohobiListMessageList(task.gohobiListId);
                             gohobiUserVisible.value = true;
                           }),
                           child: const Text("ごほうびをもらった友達を見る"),
@@ -130,73 +134,72 @@ class DetailScreen extends HookConsumerWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ElevatedButton(
-                          onPressed: task.isDone
-                              ? () async {
-                                  await ref
-                                      .read(gohobiMessageProvider.notifier)
-                                      .fetchGohobiListMessageList(
-                                          task.gohobiListId);
-                                  showDialog(
-                                    context: context,
-                                    builder: (_) => AlertDialog(
-                                      title: Text("ごほうびメッセージ",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline5),
-                                      content: gohobiProvider.when(
-                                        data: ((gohobi) => SizedBox(
-                                              width: 220,
-                                              height: 400,
-                                              child: ListView.builder(
-                                                itemCount: gohobi.length,
-                                                itemBuilder: ((_, index) =>
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Container(
+                        Visibility(
+                          visible: isMyTask,
+                          child: ElevatedButton(
+                            onPressed: task.isDone && gohobiUserVisible.value
+                                ? () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) => AlertDialog(
+                                        title: Text("ごほうびメッセージ",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5),
+                                        content: gohobiProvider.when(
+                                          data: ((gohobi) => SizedBox(
+                                                width: 220,
+                                                height: 400,
+                                                child: ListView.builder(
+                                                  itemCount: gohobi.length,
+                                                  itemBuilder: ((_, index) =>
+                                                      Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(8.0),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border.all(
-                                                            width: 8.0,
-                                                            color: Colors
-                                                                    .primaries[
-                                                                Random().nextInt(
-                                                                    Colors
-                                                                        .primaries
-                                                                        .length)],
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            border: Border.all(
+                                                              width: 8.0,
+                                                              color: Colors
+                                                                      .primaries[
+                                                                  Random().nextInt(Colors
+                                                                      .primaries
+                                                                      .length)],
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        40),
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(40),
+                                                          child: Text(
+                                                            gohobi[index],
+                                                            style: TextStyle(
+                                                                fontSize: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .headline6
+                                                                    ?.fontSize),
+                                                          ),
                                                         ),
-                                                        child: Text(
-                                                          gohobi[index],
-                                                          style: TextStyle(
-                                                              fontSize: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline6
-                                                                  ?.fontSize),
-                                                        ),
-                                                      ),
-                                                    )),
-                                              ),
-                                            )),
-                                        error: ((error, stackTrace) =>
-                                            const Text("読み込みに失敗しました")),
-                                        loading: () =>
-                                            const Text("読み込みに失敗しました"),
+                                                      )),
+                                                ),
+                                              )),
+                                          error: ((error, stackTrace) =>
+                                              const Text("読み込みに失敗しました")),
+                                          loading: () =>
+                                              const Text("再度読み込みをお願いします"),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                              : null,
-                          child: const Text('ご褒美を見る'),
+                                    );
+                                  }
+                                : null,
+                            child: const Text('ご褒美を見る'),
+                          ),
                         ),
                         isMyTask
                             ? ElevatedButton(
@@ -212,13 +215,10 @@ class DetailScreen extends HookConsumerWidget {
                                       },
                                 child: const Text('タスク完了'),
                               )
-                            : ElevatedButton(
-                                onPressed: () {
-                                  AutoRouter.of(context)
-                                      .push(AddGohobiRoute(taskId: task.uid));
-                                },
-                                child: const Text('ごほうびをあげる'),
-                              ),
+                            : gradientButton(const Text('ごほうびをあげる'), () {
+                                AutoRouter.of(context)
+                                    .push(AddGohobiRoute(taskId: task.uid));
+                              }),
                       ],
                     ),
                   ),
